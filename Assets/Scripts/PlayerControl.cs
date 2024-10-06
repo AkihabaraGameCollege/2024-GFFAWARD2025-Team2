@@ -8,6 +8,7 @@ public class FPSController : MonoBehaviour
     private Rigidbody rb;
 
     public float speed = 5f;
+    public float sprintSpeed = 10f; // 走る速度
     public float jumpForce = 5f; // ジャンプの力
     private bool isGrounded; // 地面にいるかどうか
 
@@ -46,8 +47,11 @@ public class FPSController : MonoBehaviour
 
     private void Move(Vector3 direction)
     {
+        // スプリント状態の判断
+        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : speed;
+
         // リジットボディに力を加える
-        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + direction * currentSpeed * Time.deltaTime);
     }
 
     private void Jump()
