@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 47148297}
   - component: {fileID: 47148296}
   - component: {fileID: 47148295}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5777,7 +5777,7 @@ GameObject:
   - component: {fileID: 1433816588}
   - component: {fileID: 1433816587}
   - component: {fileID: 1433816586}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5882,7 +5882,7 @@ GameObject:
   - component: {fileID: 1435594263}
   - component: {fileID: 1435594262}
   - component: {fileID: 1435594261}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6197,7 +6197,7 @@ GameObject:
   - component: {fileID: 1489336971}
   - component: {fileID: 1489336970}
   - component: {fileID: 1489336969}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7462,6 +7462,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpForce: 15
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckDistance: 3
 --- !u!54 &1740910303
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7498,7 +7503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1741034762}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: stage1Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
