@@ -7510,6 +7510,7 @@ MonoBehaviour:
   speed: 5
   sprintSpeed: 15
   jumpForce: 15
+  jumpAcceleration: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64

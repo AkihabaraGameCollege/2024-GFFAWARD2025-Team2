@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 5f;    // 通常の移動速度
     public float sprintSpeed = 10f; // 走るときの速度
-    public float jumpForce = 5f; // ジャンプの力
+    [SerializeField] private float jumpForce = 5f; // ジャンプの初速度
+    [SerializeField] private float jumpAcceleration = 5f; // ジャンプ中の加速度
     private bool isGrounded; // プレイヤーが地面にいるかどうかを示すフラグ
 
     public LayerMask groundLayer;   // 地面のレイヤーを指定するための変数
     public float groundCheckDistance = 0.1f; // 地面をチェックするための距離
+
+    private Vector3 jumpVelocity; // ジャンプの速度
 
     void Start()
     {
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+        ApplyJumpAcceleration(); // ジャンプ中の加速度を適用
         CheckGround();  // 地面のチェックを実行
     }
 
@@ -67,8 +71,16 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        // 上方向に力を加えてジャンプ
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        jumpVelocity = Vector3.up * jumpForce;
+        rb.velocity = new Vector3(rb.velocity.x, jumpVelocity.y, rb.velocity.z);
+    }
+
+    private void ApplyJumpAcceleration()
+    {
+        if (!isGrounded && rb.velocity.y < 0)
+        {
+            rb.AddForce(Vector3.down * jumpAcceleration, ForceMode.Acceleration);
+        }
     }
 
     private void CheckGround()
