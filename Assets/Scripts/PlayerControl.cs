@@ -2,70 +2,78 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Rigidbodyコンポーネントを必ず持つことを要求する
 [RequireComponent(typeof(Rigidbody))]
-public class FPSController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rb;
+    private Rigidbody rb;   // プレイヤーのRigidbodyコンポーネントを保持する変数
 
-    public float speed = 5f;
-    public float sprintSpeed = 10f; // 走る速度
+    public float speed = 5f;    // 通常の移動速度
+    public float sprintSpeed = 10f; // 走るときの速度
     public float jumpForce = 5f; // ジャンプの力
-    private bool isGrounded; // 地面にいるかどうか
+    private bool isGrounded; // プレイヤーが地面にいるかどうかを示すフラグ
 
-    // 地面判定のためのレイヤーマスク
-    public LayerMask groundLayer;
-    public float groundCheckDistance = 0.1f; // 地面をチェックする距離
+    public LayerMask groundLayer;   // 地面のレイヤーを指定するための変数
+    public float groundCheckDistance = 0.1f; // 地面をチェックするための距離
 
-    // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true; // オブジェクトの回転を固定
+        rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
+        rb.freezeRotation = true; // オブジェクトの回転を固定し、物理的な回転を防ぐ
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // 入力を取得
-        float x = Input.GetAxisRaw("Horizontal");
+        // 入力に基づいて移動方向を取得
+        float x = Input.GetAxisRaw("Horizontal"); // 左右の移動入力
+        float z = Input.GetAxisRaw("Vertical"); // 前後の移動入力
 
-        // 移動方向の計算（左右のみ）
-        Vector3 move = transform.right * x;
+        Vector3 move = new Vector3(x, 0, z);    // 入力に基づく移動ベクトルを作成
 
-        // リジットボディを使用して移動
-        Move(move);
+        Move(move); // 移動処理を呼び出す
 
-        // ジャンプ処理
+        // ジャンプボタンが押され、かつ地面にいる場合、ジャンプ処理を実行
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
         }
 
-        // 地面判定
-        CheckGround();
+        CheckGround();  // 地面のチェックを実行
     }
 
     private void Move(Vector3 direction)
     {
-        // スプリント状態の判断
+        // カメラの向きを基に前方と右方を計算
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+
+        // Y成分をゼロにして水平面での移動を制限
+        forward.y = 0;
+        right.y = 0;
+
+        // 正規化して方向ベクトルを取得
+        forward.Normalize();
+        right.Normalize();
+
+        // 入力方向に基づいて最終的な移動ベクトルを計算
+        Vector3 moveDirection = (right * direction.x + forward * direction.z).normalized;
+
+        // 現在の速度を決定（シフトキーが押されているかによって
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : speed;
 
-        // リジットボディに力を加える
-        rb.MovePosition(rb.position + direction * currentSpeed * Time.deltaTime);
+        // Rigidbodyを使って新しい位置に移動
+        rb.MovePosition(rb.position + moveDirection * currentSpeed * Time.deltaTime);
     }
 
     private void Jump()
     {
-        // 上方向に力を加える
+        // 上方向に力を加えてジャンプ
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
     private void CheckGround()
     {
-        // 地面に接触しているか確認
+        // Raycastを使ってプレイヤーが地面に接触しているかを確認
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
-
-        // デバッグ用に地面チェックのレイを可視化することも可能（オプション）
-        // Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, isGrounded ? Color.green : Color.red);
     }
 }
