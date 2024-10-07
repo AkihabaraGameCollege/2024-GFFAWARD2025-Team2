@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour
     {
         // 入力に基づいて移動方向を取得
         float x = Input.GetAxisRaw("Horizontal"); // 左右の移動入力
-        float z = Input.GetAxisRaw("Vertical"); // 前後の移動入力
+        //float z = Input.GetAxisRaw("Vertical"); // 前後の移動入力
 
-        Vector3 move = new Vector3(x, 0, z);    // 入力に基づく移動ベクトルを作成
+        Vector3 move = new Vector3(x, 0/*, z*/);    // 入力に基づく移動ベクトルを作成
 
         Move(move); // 移動処理を呼び出す
 
