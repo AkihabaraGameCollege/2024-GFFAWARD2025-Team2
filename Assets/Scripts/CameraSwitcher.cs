@@ -27,18 +27,25 @@ public class CompassCamera : MonoBehaviour
         float totalRotated = 0f;
         float targetRotation = angle;
 
-        // 各フレームでの回転量を計算
-        float step = rotationSpeed * Time.deltaTime;
+        // 回転に必要なフレーム数を計算
+        float totalRotationTime = Mathf.Abs(targetRotation / rotationSpeed);
+        float elapsedTime = 0f;
 
-        while (totalRotated < Mathf.Abs(targetRotation))
+        while (elapsedTime < totalRotationTime)
         {
-            // このフレームでの回転量を決定
-            float rotationThisFrame = Mathf.Min(step, Mathf.Abs(targetRotation - totalRotated));
-            transform.RotateAround(target.position, Vector3.up, Mathf.Sign(targetRotation) * rotationThisFrame);
-            totalRotated += rotationThisFrame;
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / totalRotationTime; // 0から1に変化する値
+
+            // 線形補間で回転量を計算
+            float rotationThisFrame = Mathf.Lerp(0, targetRotation, t);
+            transform.RotateAround(target.position, Vector3.up, rotationThisFrame - totalRotated);
+            totalRotated = rotationThisFrame;
 
             yield return null; // 次のフレームを待つ
         }
+
+        // 最後の回転を確実に行う
+        transform.RotateAround(target.position, Vector3.up, targetRotation - totalRotated);
 
         isRotating = false; // 回転フラグをリセット
     }
