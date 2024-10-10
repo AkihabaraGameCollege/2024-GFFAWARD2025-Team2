@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Rigidbodyコンポーネントを必ず持つことを要求する
 [RequireComponent(typeof(Rigidbody))]
@@ -87,5 +88,14 @@ public class PlayerController : MonoBehaviour
     {
         // Raycastを使ってプレイヤーが地面に接触しているかを確認
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Spikes"))
+        {
+            // ゲームオーバーシーンに遷移
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }
