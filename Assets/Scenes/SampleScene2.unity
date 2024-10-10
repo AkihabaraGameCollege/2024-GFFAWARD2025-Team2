@@ -5744,6 +5744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1588263071758547496}
+  rotationSpeed: 50
 --- !u!23 &6110754612572892339
 MeshRenderer:
   m_ObjectHideFlags: 0
