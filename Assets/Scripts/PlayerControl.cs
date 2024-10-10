@@ -92,10 +92,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Spikes"))
+        if (other.CompareTag("goal"))
         {
             // ゲームオーバーシーンに遷移
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("ClearScene");
         }
     }
+
 }
