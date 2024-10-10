@@ -19,7 +19,7 @@ public class Spikes : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            transform.localPosition += new Vector3(0, 1, 0); // è„Ç…à⁄ìÆ
+            transform.localPosition += new Vector3(0, 2, 0); // è„Ç…à⁄ìÆ
             yield return new WaitForSeconds(duration);
             transform.localPosition = originalPosition; // å≥ÇÃà íuÇ…ñﬂÇÈ
         }
