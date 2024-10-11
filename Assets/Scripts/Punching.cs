@@ -1,34 +1,55 @@
 using UnityEngine;
+using System.Collections;
 
 public class Punching : MonoBehaviour
 {
-    public Transform punchObject; // パンチ位置のオブジェクト
-    public float punchForce = 10f;
-    private bool isPunched = false;
+    public float delay = 1.0f;
+    public float duration = 0.5f;
+    public float moveDistance = 28f; // 移動する距離
 
-    void Update()
+    private Vector3 originalPosition;
+    private LineRenderer lineRenderer;
+
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isPunched)
+        originalPosition = transform.localPosition;
+
+        // LineRenderer の初期設定
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer.positionCount = 2;
+        lineRenderer.startWidth = 0.1f;
+        lineRenderer.endWidth = 0.1f;
+        lineRenderer.material = new Material(Shader.Find("Sprites/Default")) { color = Color.red };
+
+        StartCoroutine(SpikeRoutine());
+    }
+
+    private IEnumerator SpikeRoutine()
+    {
+        while (true)
         {
-            Punch();
+            yield return new WaitForSeconds(delay);
+            Vector3 targetPosition = originalPosition + new Vector3(0, 0, moveDistance);
+            float elapsedTime = 0f;
+
+            // スムーズに移動
+            while (elapsedTime < duration)
+            {
+                transform.localPosition = Vector3.Lerp(originalPosition, targetPosition, (elapsedTime / duration));
+                elapsedTime += Time.deltaTime;
+                yield return null; // 次のフレームを待つ
+            }
+
+            transform.localPosition = originalPosition; // 元の位置に戻る
+
+            // 移動軌道を更新
+            lineRenderer.SetPositions(new Vector3[] { originalPosition, targetPosition });
         }
     }
 
-    void Punch()
+    void OnDisable()
     {
-        isPunched = true;
-        Rigidbody rb = punchObject.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.AddForce(Vector3.forward * punchForce, ForceMode.Impulse);
-        }
-
-        // パンチ後のクールダウン
-        Invoke("ResetPunch", 1f);
-    }
-
-    void ResetPunch()
-    {
-        isPunched = false;
+        // スクリプトが無効になった時にラインを消す
+        lineRenderer.positionCount = 0;
     }
 }
