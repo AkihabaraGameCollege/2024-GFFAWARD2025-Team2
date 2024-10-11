@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 1
-  duration: 0.5
+  duration: 1
   moveDistance: 28
 --- !u!65 &1057052498
 BoxCollider:

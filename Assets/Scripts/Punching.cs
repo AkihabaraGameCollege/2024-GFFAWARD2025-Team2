@@ -9,10 +9,15 @@ public class Punching : MonoBehaviour
 
     private Vector3 originalPosition;
     private LineRenderer lineRenderer;
+    private Rigidbody rb;
 
     void Start()
     {
         originalPosition = transform.localPosition;
+
+        // Rigidbodyの初期設定
+        rb = gameObject.AddComponent<Rigidbody>();
+        rb.isKinematic = true; // 物理の影響を受けないようにする
 
         // LineRenderer の初期設定
         lineRenderer = gameObject.AddComponent<LineRenderer>();
@@ -35,12 +40,14 @@ public class Punching : MonoBehaviour
             // スムーズに移動
             while (elapsedTime < duration)
             {
-                transform.localPosition = Vector3.Lerp(originalPosition, targetPosition, (elapsedTime / duration));
+                float t = elapsedTime / duration;
+                Vector3 newPosition = Vector3.Lerp(originalPosition, targetPosition, t);
+                rb.MovePosition(newPosition); // Rigidbodyを使って移動
                 elapsedTime += Time.deltaTime;
                 yield return null; // 次のフレームを待つ
             }
 
-            transform.localPosition = originalPosition; // 元の位置に戻る
+            rb.MovePosition(originalPosition); // 元の位置に戻る
 
             // 移動軌道を更新
             lineRenderer.SetPositions(new Vector3[] { originalPosition, targetPosition });
