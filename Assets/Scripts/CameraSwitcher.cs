@@ -6,8 +6,17 @@ public class CompassCamera : MonoBehaviour
     public Transform target; // 回転の基点となるゲームオブジェクト
     public float rotationSpeed = 90f; // 回転速度（1秒あたりの角度）
     public float rotationDuration = 1f; // 回転完了までの時間
+    public AudioClip rotationSound; // 回転時に再生する音
+    private AudioSource audioSource; // AudioSourceコンポーネント
 
     private bool isRotating = false; // 現在回転中かどうかのフラグ
+
+    void Start()
+    {
+        // AudioSourceコンポーネントを取得
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = rotationSound; // 音を設定
+    }
 
     void Update()
     {
@@ -30,6 +39,9 @@ public class CompassCamera : MonoBehaviour
         // 回転に必要なフレーム数を計算
         float totalRotationTime = Mathf.Abs(targetRotation / rotationSpeed);
         float elapsedTime = 0f;
+
+        // SEを再生
+        audioSource.Play();
 
         while (elapsedTime < totalRotationTime)
         {

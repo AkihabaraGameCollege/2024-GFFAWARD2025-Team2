@@ -1220,7 +1220,7 @@ GameObject:
   - component: {fileID: 435262711}
   - component: {fileID: 435262710}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1238,7 +1238,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ba55014b3cd73524c989523a0f5fd8bd, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2058,6 +2058,7 @@ MonoBehaviour:
   target: {fileID: 950834164}
   rotationSpeed: 50
   rotationDuration: 1
+  rotationSound: {fileID: 8300000, guid: 879c9aeca2851294691722b69baaad3e, type: 3}
 --- !u!1 &998592141
 GameObject:
   m_ObjectHideFlags: 0
