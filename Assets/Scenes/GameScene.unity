@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  sprintSpeed: 10
+  sprintSpeed: 15
   jumpForce: 15
   jumpAcceleration: 15
   groundLayer:
