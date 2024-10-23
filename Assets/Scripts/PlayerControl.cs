@@ -69,9 +69,18 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyJumpAcceleration()
     {
-        if (!isGrounded && rb.velocity.y < 0)
+        if (!isGrounded)
         {
-            rb.AddForce(Vector3.down * jumpAcceleration, ForceMode.Acceleration);
+            // ‰º•ûŒü‚Ì‰Á‘¬
+            if (rb.velocity.y < 0)
+            {
+                rb.AddForce(Vector3.down * jumpAcceleration, ForceMode.Acceleration);
+            }
+            // ã•ûŒü‚Ì‰Á‘¬i—Í‚ð”¼•ª‚É‚·‚éj
+            else if (rb.velocity.y > 0)
+            {
+                rb.AddForce(Vector3.up * (jumpAcceleration / 2), ForceMode.Acceleration);
+            }
         }
     }
 
