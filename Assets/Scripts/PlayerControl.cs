@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleSprinting()
     {
-        bool sprintInput = Input.GetKey(KeyCode.LeftShift);
+        bool sprintInput = Input.GetKey(KeyCode.LeftShift) || Input.GetButton("Fire1"); ;
         if (sprintInput && !isSprinting)
         {
             isSprinting = true;
