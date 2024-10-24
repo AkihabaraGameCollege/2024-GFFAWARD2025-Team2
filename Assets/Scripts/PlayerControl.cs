@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        ApplyJumpAcceleration();
+        //ApplyJumpAcceleration();
         CheckGround();
         HandleSprinting();
     }
@@ -67,22 +67,22 @@ public class PlayerController : MonoBehaviour
         audioSource.PlayOneShot(jumpSound); // ジャンプ音を再生
     }
 
-    private void ApplyJumpAcceleration()
-    {
-        if (!isGrounded)
-        {
-            // 下方向の加速
-            if (rb.velocity.y < 0)
-            {
-                rb.AddForce(Vector3.down * jumpAcceleration, ForceMode.Acceleration);
-            }
-            // 上方向の加速（力を半分にする）
-            else if (rb.velocity.y > 0)
-            {
-                rb.AddForce(Vector3.up * (jumpAcceleration / 2), ForceMode.Acceleration);
-            }
-        }
-    }
+    //private void ApplyJumpAcceleration()
+    //{
+    //    if (!isGrounded)
+    //    {
+    //        // 下方向の加速
+    //        if (rb.velocity.y < 0)
+    //        {
+    //            rb.AddForce(Vector3.down * (jumpAcceleration / 2), ForceMode.Acceleration);
+    //        }
+    //        // 上方向の加速（力を半分にする）
+    //        else if (rb.velocity.y > 0)
+    //        {
+    //            rb.AddForce(Vector3.up * (jumpAcceleration / 2), ForceMode.Acceleration);
+    //        }
+    //    }
+    //}
 
     private void CheckGround()
     {
