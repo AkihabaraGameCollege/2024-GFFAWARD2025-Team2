@@ -17,7 +17,7 @@ public class GameDirector : MonoBehaviour
     {
         this.hpGauge.GetComponent<Image>().fillAmount -= 0.1f;
         var image = this.hpGauge.GetComponent<Image>();
-        if(image.fillAmount < 0.8f)
+        if(image.fillAmount < 0.1f)
         {
             Debug.Log(image.fillAmount);
             SceneManager.LoadScene("ClearScene");
