@@ -103,11 +103,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("goal"))
-        {
-            SceneManager.LoadScene("ClearScene");
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("goal"))
+    //    {
+    //        SceneManager.LoadScene("ClearScene");
+    //    }
+    //}
 }
