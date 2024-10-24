@@ -120,5 +120,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackPoint: {fileID: 3700408137133608026}
   player: {fileID: 0}
-  xValue: 3
-  zValue: 3
+  xValue: 1.5
+  zValue: 1.5

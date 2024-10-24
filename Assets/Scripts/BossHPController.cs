@@ -34,7 +34,7 @@ public class BossHPController : MonoBehaviour
             GameObject go = Instantiate(AttackPoint);
             int px = Random.Range(-6, 7);
             int pz = Random.Range(-6, 7);
-            go.transform.position = new Vector3(px * xValue, 0, pz * zValue) + myPos + new Vector3(20f, 0, 0);
+            go.transform.position = new Vector3(px * xValue, 0, pz * zValue) + myPos + new Vector3(10f, 0, 0);
             Destroy(gameObject);
         }
     }
