@@ -20,11 +20,11 @@ public class CompassCamera : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !isRotating)
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetButton("Fire2") && !isRotating)
         {
             StartCoroutine(RotateAroundTarget(90f));
         }
-        else if (Input.GetKeyDown(KeyCode.E) && !isRotating)
+        else if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire3") && !isRotating)
         {
             StartCoroutine(RotateAroundTarget(-90f));
         }
