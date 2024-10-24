@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; // UI名前空間の追加
 
 public class FlawController : MonoBehaviour
 {
@@ -12,8 +13,12 @@ public class FlawController : MonoBehaviour
 
     private GameObject currentObject;
 
+    public Slider touchCountSlider; // UIスライダーへの参照
+
     void Start()
     {
+        touchCountSlider.maxValue = 10; // スライダーの最大値を設定
+        touchCountSlider.value = 0; // 初期値を設定
         SpawnObject();
     }
 
@@ -35,6 +40,8 @@ public class FlawController : MonoBehaviour
         if (other.CompareTag("Player")) // プレイヤーがオブジェクトに触れたかチェック
         {
             touchCount++;
+            touchCountSlider.value = touchCount; // スライダーの値を更新
+
             Destroy(currentObject); // ゲームオブジェクトを削除
             currentObject = null; // 削除後のオブジェクト参照をクリア
 
