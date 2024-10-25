@@ -2585,7 +2585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 950834164}
-  rotationSpeed: 50
+  rotationSpeed: 200
   rotationDuration: 1
   rotationSound: {fileID: 8300000, guid: 879c9aeca2851294691722b69baaad3e, type: 3}
 --- !u!1 &998592141
