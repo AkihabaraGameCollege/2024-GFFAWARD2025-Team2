@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float sprintSpeed = 10f;
     [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float jumpAcceleration = 5f;
+    //[SerializeField] private float jumpAcceleration = 5f;
     private bool isGrounded;
     public LayerMask groundLayer;
     public float groundCheckDistance = 0.1f;
