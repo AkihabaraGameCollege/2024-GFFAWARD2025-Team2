@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 381743568}
   - component: {fileID: 381743567}
   m_Layer: 5
-  m_Name: ExitButton
+  m_Name: NextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 409d759098ad996479c07bfa0e860e44, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6e44e3bf540b744c9c27db1721d86f2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 371cc50b30819a14d89813d022cc66c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0740db347147e64438baa30dec5c5345, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

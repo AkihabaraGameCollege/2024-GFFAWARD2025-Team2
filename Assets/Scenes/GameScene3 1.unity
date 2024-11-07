@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseUI: {fileID: 1199927176}
-  sceneToLoad: GameScene3
+  sceneToLoad: GameScene3 1
 --- !u!4 &197688767
 Transform:
   m_ObjectHideFlags: 0
@@ -758,6 +758,78 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a5ddbd3b910f66948a7df4ff8bc87482, type: 3}
   m_PrefabInstance: {fileID: 617803916}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &647652411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 647652412}
+  - component: {fileID: 647652414}
+  - component: {fileID: 647652413}
+  m_Layer: 0
+  m_Name: HitColider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &647652412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647652411}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 779097507}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &647652413
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647652411}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &647652414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647652411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4cd9f96fb172b45906e71eaf4a32cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainObject: {fileID: 779097506}
+  hp: 2
+  maxHp: 2
+  destroyEffect: {fileID: 0}
+  damageEffect: {fileID: 0}
+  TagName: EnemyAtacck
 --- !u!1 &659140810
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +901,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 647652412}
   m_Father: {fileID: 616624733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &779097508
@@ -1040,7 +1113,7 @@ Transform:
   m_GameObject: {fileID: 814675423}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: -65}
+  m_LocalPosition: {x: 0, y: 30, z: -95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1150,6 +1223,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1425732337}
     m_Modifications:
+    - target: {fileID: 2804309204892555552, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804309204892555552, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804309204892555552, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 197688766}
+    - target: {fileID: 2804309204892555552, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804309204892555552, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickTitleButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804309204892555552, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804309204892555552, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325801499876787755, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 197688766}
+    - target: {fileID: 3325801499876787755, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RetryStage
+      objectReference: {fileID: 0}
     - target: {fileID: 6431601197502144874, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1233,6 +1342,18 @@ PrefabInstance:
     - target: {fileID: 7140427312120586932, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
       propertyPath: m_Name
       value: PauseUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8860421643043353115, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8860421643043353115, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 197688766}
+    - target: {fileID: 8860421643043353115, guid: f2c7b48b88115cc4cae3c2dbc276708f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResumeGame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1809,6 +1930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fist (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1622032946283496715, guid: e03d3f1839e162a40875fb7fd7da96c5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7307540895544317568, guid: e03d3f1839e162a40875fb7fd7da96c5, type: 3}
       propertyPath: moveDistance
       value: -300
@@ -1852,6 +1977,10 @@ PrefabInstance:
     - target: {fileID: 7929725362573833275, guid: e03d3f1839e162a40875fb7fd7da96c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597979609315292333, guid: e03d3f1839e162a40875fb7fd7da96c5, type: 3}
+      propertyPath: m_TagString
+      value: EnemyAtacck
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2231,6 +2360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fist
       objectReference: {fileID: 0}
+    - target: {fileID: 1622032946283496715, guid: e03d3f1839e162a40875fb7fd7da96c5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7307540895544317568, guid: e03d3f1839e162a40875fb7fd7da96c5, type: 3}
       propertyPath: moveDistance
       value: -300
@@ -2274,6 +2407,10 @@ PrefabInstance:
     - target: {fileID: 7929725362573833275, guid: e03d3f1839e162a40875fb7fd7da96c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597979609315292333, guid: e03d3f1839e162a40875fb7fd7da96c5, type: 3}
+      propertyPath: m_TagString
+      value: EnemyAtacck
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
