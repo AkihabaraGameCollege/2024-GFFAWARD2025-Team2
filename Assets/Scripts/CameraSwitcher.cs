@@ -43,9 +43,28 @@ public class CompassCamera : MonoBehaviour
         // SEを再生
         audioSource.Play();
 
+        // タイムスケールを0にしてゲームの進行を停止
+        Time.timeScale = 0f;
+
+        // Playerタグのオブジェクトを全て取得して一時的に停止
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            Rigidbody rb = player.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = true; // Rigidbodyの物理挙動を停止
+            }
+            Animator animator = player.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.speed = 0f; // アニメーションを停止
+            }
+        }
+
         while (elapsedTime < totalRotationTime)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime; // Time.timeScaleの影響を受けない時間
             float t = elapsedTime / totalRotationTime; // 0から1に変化する値
 
             // 線形補間で回転量を計算
@@ -58,6 +77,24 @@ public class CompassCamera : MonoBehaviour
 
         // 最後の回転を確実に行う
         transform.RotateAround(target.position, Vector3.up, targetRotation - totalRotated);
+
+        // 回転終了後にタイムスケールを元に戻す
+        Time.timeScale = 1f;
+
+        // Playerタグのオブジェクトを再度動かせるようにする
+        foreach (GameObject player in players)
+        {
+            Rigidbody rb = player.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = false; // Rigidbodyの物理挙動を復活
+            }
+            Animator animator = player.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.speed = 1f; // アニメーションの再生速度を元に戻す
+            }
+        }
 
         isRotating = false; // 回転フラグをリセット
     }
