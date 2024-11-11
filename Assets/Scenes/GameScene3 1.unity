@@ -1555,6 +1555,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossHPSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 162601619460365617, guid: 82c45086bcfdfd34fa4dc5ed179422a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378047414385458219, guid: 82c45086bcfdfd34fa4dc5ed179422a3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378047414385458219, guid: 82c45086bcfdfd34fa4dc5ed179422a3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378047414385458219, guid: 82c45086bcfdfd34fa4dc5ed179422a3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7756566807064628518, guid: 82c45086bcfdfd34fa4dc5ed179422a3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2251,7 +2267,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ba55014b3cd73524c989523a0f5fd8bd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f3d6017d35a89c545a9b1bc43a8192a6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
