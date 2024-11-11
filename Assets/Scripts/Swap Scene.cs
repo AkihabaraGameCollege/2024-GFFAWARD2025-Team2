@@ -19,6 +19,10 @@ public class SwapScene : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene3 1");
     }
+    public void OnClickIntroScene()
+    {
+        SceneManager.LoadScene("IntroScene");
+    }
 
 
 
