@@ -274,7 +274,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1703516200}
         m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnClickStartButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 844a38b452c078e4f9d9cce1381ca9e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5509d2f086246a946b843c8c23f49d1d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

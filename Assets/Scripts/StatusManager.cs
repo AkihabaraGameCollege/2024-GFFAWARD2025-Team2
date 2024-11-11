@@ -49,7 +49,7 @@ public class StatusManager : MonoBehaviour
         //var effect = Instantiate(destroyEffect);
         //effect.transform.position = transform.position;
         //Destroy(effect, 5);
-        SceneManager.LoadScene("Title Scene"); // インスペクターで設定されたシーン名を使用してロード
+        SceneManager.LoadScene("GameOverScene"); // インスペクターで設定されたシーン名を使用してロード
 
     }
 
