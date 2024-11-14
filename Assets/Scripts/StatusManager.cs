@@ -14,6 +14,8 @@ public class StatusManager : MonoBehaviour
     [SerializeField] GameObject damageEffect;   //被弾エフェクト
 
     [SerializeField] string TagName;            //当たり判定となるタグ
+    public GameObject[] lifeArray = new GameObject[3]; //HPのゲームオブジェクト
+    private int lifePoint = 3;
 
     // Update is called once per frame
     void Update()
@@ -39,6 +41,8 @@ public class StatusManager : MonoBehaviour
     {
         Debug.Log("Hit3");
         hp--;
+        lifeArray[lifePoint - 1].SetActive(false);//HPのゲームオブジェクトを非表示にさせる
+        lifePoint--;//要素を一つ－する
         //var effect = Instantiate(damageEffect);
         //effect.transform.position = transform.position;
     }

@@ -23,7 +23,7 @@ public class IntroScene : MonoBehaviour
     {
      if(Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("GameScene3 1");
+            SceneManager.LoadScene("GameScene3 2");
         }   
     }
 
