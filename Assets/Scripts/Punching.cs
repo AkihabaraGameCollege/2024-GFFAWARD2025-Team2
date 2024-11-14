@@ -7,6 +7,7 @@ public class Punching : MonoBehaviour
     public float delay = 1.0f; // パンチを発射するまでの遅延時間
     public float duration = 0.5f; // パンチの移動にかかる時間
     public float moveDistance = 28f; // パンチが移動する距離
+    public float moveDistance_x = 28f; // 移動する距離
     public string gameOverSceneName = "GameOverScene"; // ゲームオーバーシーンの名前
 
     private Vector3 originalPosition; // 初期位置
@@ -19,11 +20,11 @@ public class Punching : MonoBehaviour
         originalPosition = transform.localPosition;
 
         // LineRenderer の初期設定
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.positionCount = 2;
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
-        lineRenderer.material = new Material(Shader.Find("Sprites/Default")) { color = Color.red };
+        //lineRenderer = gameObject.AddComponent<LineRenderer>();
+        //lineRenderer.positionCount = 2;
+        //lineRenderer.startWidth = 0.1f;
+        //lineRenderer.endWidth = 0.1f;
+        //lineRenderer.material = new Material(Shader.Find("Sprites/Default")) { color = Color.red };
 
         // 初期状態でパンチを発射
         StartCoroutine(PunchRoutine());
@@ -44,7 +45,7 @@ public class Punching : MonoBehaviour
             yield return new WaitForSeconds(delay); // 遅延時間を待つ
 
             // パンチの移動先を計算
-            Vector3 targetPosition = originalPosition + new Vector3(0, 0, moveDistance);
+            Vector3 targetPosition = originalPosition + new Vector3(moveDistance_x, 0, moveDistance);
             float elapsedTime = 0f;
 
             // スムーズに移動するための処理
@@ -52,7 +53,7 @@ public class Punching : MonoBehaviour
             {
                 float t = elapsedTime / duration;
                 transform.localPosition = Vector3.Lerp(originalPosition, targetPosition, t);
-                lineRenderer.SetPositions(new Vector3[] { originalPosition, transform.localPosition }); // ラインレンダラーで軌跡を描画
+                //lineRenderer.SetPositions(new Vector3[] { originalPosition, transform.localPosition }); // ラインレンダラーで軌跡を描画
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
@@ -61,7 +62,7 @@ public class Punching : MonoBehaviour
             transform.localPosition = originalPosition;
 
             // ラインレンダラーの位置を更新
-            lineRenderer.SetPositions(new Vector3[] { originalPosition, originalPosition });
+            //lineRenderer.SetPositions(new Vector3[] { originalPosition, originalPosition });
 
             isPunching = false; // パンチが完了したのでフラグを戻す
 
@@ -99,6 +100,6 @@ public class Punching : MonoBehaviour
     void OnDisable()
     {
         // スクリプトが無効になった時にラインを消す
-        lineRenderer.positionCount = 0;
+        //lineRenderer.positionCount = 0;
     }
 }
