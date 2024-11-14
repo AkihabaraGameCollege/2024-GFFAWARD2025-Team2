@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CountdownTimer : MonoBehaviour
@@ -30,6 +31,7 @@ public class CountdownTimer : MonoBehaviour
             UpdateTimeDisplay(timeRemaining);
             // I—¹‚É‰½‚©‚µ‚½‚¢ê‡‚Í‚±‚±‚Éˆ—‚ğ’Ç‰Á
             // —á: Debug.Log("Time's up!");
+            SceneManager.LoadScene("ClearScene");
         }
     }
 
