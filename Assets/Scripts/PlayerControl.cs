@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         // ジャンプボタンが押され、かつ地面にいる場合にジャンプ
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            Debug.Log("Jump");
             Jump(); // ジャンプ処理
         }
     }
