@@ -8977,6 +8977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownText: {fileID: 2017310334}
+  timeRemaining: 30
 --- !u!114 &2017310334
 MonoBehaviour:
   m_ObjectHideFlags: 0
