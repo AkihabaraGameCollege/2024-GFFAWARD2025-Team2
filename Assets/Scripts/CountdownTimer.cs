@@ -8,7 +8,7 @@ public class CountdownTimer : MonoBehaviour
     public Text countdownText;
 
     // カウントダウンの開始時間（秒）
-    private float timeRemaining = 180f;  // 3分 = 180秒
+    [SerializeField] private float timeRemaining = 180f;  // 3分 = 180秒
 
     void Start()
     {
