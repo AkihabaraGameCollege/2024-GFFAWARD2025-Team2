@@ -830,6 +830,10 @@ MonoBehaviour:
   destroyEffect: {fileID: 0}
   damageEffect: {fileID: 0}
   TagName: EnemyAtacck
+  lifeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &659140810
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,6 +2550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownText: {fileID: 2017310334}
+  timeRemaining: 180
 --- !u!114 &2017310334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2639,6 +2644,14 @@ PrefabInstance:
     - target: {fileID: 1863069054665971332, guid: 27a43d68862c74647b0b251408520b39, type: 3}
       propertyPath: m_Name
       value: girl_coat_winter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863069054665971332, guid: 27a43d68862c74647b0b251408520b39, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530576160192892852, guid: 27a43d68862c74647b0b251408520b39, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
