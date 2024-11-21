@@ -931,11 +931,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _sprintSpeed: 6
+  _sprintSpeed: 13
   _jumpSpeed: 7
   _gravity: 15
   _fallSpeed: 10
   _initFallSpeed: 2
+  _maxStamina: 100
+  _staminaRecoveryRate: 5
+  _sprintStaminaDrainRate: 10
+  _staminaSlider: {fileID: 0}
 --- !u!114 &9025500926967030339
 MonoBehaviour:
   m_ObjectHideFlags: 0
