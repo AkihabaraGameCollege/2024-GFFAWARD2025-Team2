@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     [Header("移動の速さ"), SerializeField]
     private float _speed = 3;
 
+    [Header("スプリント時の速さ"), SerializeField]
+    private float _sprintSpeed = 6;  // スプリント時の速度
+
     [Header("ジャンプする瞬間の速さ"), SerializeField]
     private float _jumpSpeed = 7;
 
@@ -26,6 +29,9 @@ public class PlayerController : MonoBehaviour
     private float _verticalVelocity;
     private float _turnVelocity;
     private bool _isGroundedPrev;
+
+    // スプリントフラグ
+    private bool _isSprinting;
 
     /// <summary>
     /// 移動Action(PlayerInput側から呼ばれる)
@@ -49,6 +55,26 @@ public class PlayerController : MonoBehaviour
         _verticalVelocity = _jumpSpeed;
     }
 
+    /// <summary>
+    /// スプリントAction(PlayerInput側から呼ばれる)
+    /// </summary>
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("Sprint started");
+            _isSprinting = true;
+        }
+        else if (context.canceled)
+        {
+            Debug.Log("Sprint canceled");
+            _isSprinting = false;
+        }
+        else
+        {
+            Debug.Log("Sprint action not recognized. Context: " + context.phase);
+        }
+    }
     private void Awake()
     {
         _transform = transform;
@@ -76,11 +102,14 @@ public class PlayerController : MonoBehaviour
 
         _isGroundedPrev = isGrounded;
 
+        // スプリント時に速度を調整
+        float currentSpeed = _isSprinting ? _sprintSpeed : _speed;
+
         // 操作入力と鉛直方向速度から、現在速度を計算
         var moveVelocity = new Vector3(
-            _inputMove.x * _speed,
+            _inputMove.x * currentSpeed,
             _verticalVelocity,
-            _inputMove.y * _speed
+            _inputMove.y * currentSpeed
         );
         // 現在フレームの移動量を移動速度から計算
         var moveDelta = moveVelocity * Time.deltaTime;
