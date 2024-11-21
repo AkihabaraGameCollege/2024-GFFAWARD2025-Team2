@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;  // UIのスライダーを使用するために必要
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -31,6 +31,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("スタミナ消費速度"), SerializeField]
     private float _sprintStaminaDrainRate = 10f;
+
+    // 無敵時間の設定（インスペクタで調整できるようにする）
+    [Header("無敵時間"), SerializeField]
+    private float _invincibilityDuration = 10.0f; // 無敵時間（秒）
+
+    private float _invincibilityTimer = 0.0f;   // 経過時間を格納するタイマー変数(初期値0秒)
+    private bool _isInvincible = false;         // 無敵状態かどうかのフラグ
 
     private Transform _transform;
     private CharacterController _characterController;
@@ -78,10 +85,12 @@ public class PlayerController : MonoBehaviour
         if (context.performed && _currentStamina > 0)
         {
             _isSprinting = true;  // スプリント開始
+            EnableInvincibility(); // ダッシュ中に無敵を有効化
         }
         else if (context.canceled || _currentStamina <= 0)
         {
             _isSprinting = false;  // スプリント終了
+            DisableInvincibility(); // ダッシュ終了時に無敵を無効化
         }
     }
 
@@ -95,6 +104,21 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // 無敵状態の処理
+        if (_isInvincible)
+        {
+            _invincibilityTimer += Time.deltaTime;
+            Debug.Log("無敵状態");
+
+            // 無敵時間が終了したら無敵を解除
+            if (_invincibilityTimer >= _invincibilityDuration)
+            {
+                Debug.Log("無敵状態終了");
+                _isInvincible = false;
+                _invincibilityTimer = 0.0f;  // タイマーをリセット
+            }
+        }
+
         // スタミナの管理
         if (_isSprinting)
         {
@@ -106,6 +130,7 @@ public class PlayerController : MonoBehaviour
             if (_currentStamina == 0)
             {
                 _isSprinting = false;
+                DisableInvincibility(); // スプリント終了時に無敵を無効化
             }
         }
         else
@@ -172,6 +197,28 @@ public class PlayerController : MonoBehaviour
 
             // オブジェクトの回転を更新
             _transform.rotation = Quaternion.Euler(0, angleY, 0);
+        }
+    }
+
+    // ダッシュ中に無敵を有効化
+    private void EnableInvincibility()
+    {
+        if (!_isInvincible) // 無敵でない場合にのみ有効化
+        {
+            Debug.Log("ダッシュ中、無敵状態開始");
+            _isInvincible = true;
+            _invincibilityTimer = 0.0f;  // タイマーリセット
+        }
+    }
+
+    // ダッシュ終了時に無敵を無効化
+    private void DisableInvincibility()
+    {
+        if (_isInvincible) // 無敵中の場合のみ無効化
+        {
+            Debug.Log("ダッシュ終了、無敵状態解除");
+            _isInvincible = false;
+            _invincibilityTimer = 0.0f;  // タイマーリセット
         }
     }
 }
