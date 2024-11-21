@@ -1410,6 +1410,7 @@ MonoBehaviour:
   _maxStamina: 100
   _staminaRecoveryRate: 5
   _sprintStaminaDrainRate: 10
+  _invincibilityDuration: 10
   _staminaSlider: {fileID: 0}
 --- !u!54 &779097512
 Rigidbody:
@@ -3317,8 +3318,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 536803865}
     - target: {fileID: 803678016464701896, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-      propertyPath: _staminaRecoveryRate
-      value: 10
+      propertyPath: _invincibilityDuration
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1475970062479105023, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: m_Name
