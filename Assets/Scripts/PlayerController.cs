@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private float _maxStamina = 100f;
 
     [Header("スタミナ回復速度"), SerializeField]
-    private float _staminaRecoveryRate = 5f;
+    private float _staminaRecoveryRate = 10f;
 
     [Header("スタミナ消費速度"), SerializeField]
     private float _sprintStaminaDrainRate = 10f;
