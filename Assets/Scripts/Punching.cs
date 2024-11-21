@@ -1,105 +1,120 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement; // シーン遷移を行うために追加
+using UnityEngine.SceneManagement;
 
 public class Punching : MonoBehaviour
 {
-    public float delay = 1.0f; // パンチを発射するまでの遅延時間
-    public float duration = 0.5f; // パンチの移動にかかる時間
-    public float moveDistance = 28f; // パンチが移動する距離
-    public float moveDistance_x = 28f; // 移動する距離
-    public string gameOverSceneName = "GameOverScene"; // ゲームオーバーシーンの名前
+    // パンチの遅延時間（秒）
+    public float delay = 1.0f;
+    // パンチのアニメーションの時間（秒）
+    public float duration = 0.5f;
+    // パンチの移動距離（Z軸方向）
+    public float moveDistance = 28f;
+    // パンチの移動距離（X軸方向）
+    public float moveDistance_x = 28f;
+    // ゲームオーバー時に遷移するシーン名
+    public string gameOverSceneName = "GameOverScene";
 
-    private Vector3 originalPosition; // 初期位置
-    private LineRenderer lineRenderer; // LineRenderer（パンチの軌跡を描画）
-    private bool isPunching = false; // パンチを発射中かどうか
-    private int hitCount = 0; // プレイヤーがパンチを受けた回数
+    // パンチの開始位置（ゲームオブジェクトのローカル位置）
+    private Vector3 originalPosition;
+    // パンチが現在実行中かどうかを示すフラグ
+    private bool isPunching = false;
+    // パンチが当たった回数
+    private int hitCount = 0;
 
+    // 初期化処理
     void Start()
     {
+        // パンチの開始位置を保存
         originalPosition = transform.localPosition;
-
-        // LineRenderer の初期設定
-        //lineRenderer = gameObject.AddComponent<LineRenderer>();
-        //lineRenderer.positionCount = 2;
-        //lineRenderer.startWidth = 0.1f;
-        //lineRenderer.endWidth = 0.1f;
-        //lineRenderer.material = new Material(Shader.Find("Sprites/Default")) { color = Color.red };
-
-        // 初期状態でパンチを発射
+        // パンチ処理を開始
         StartCoroutine(PunchRoutine());
+
+        // 確認: パンチのコライダーが Trigger として設定されていること
+        Collider punchCollider = GetComponent<Collider>();
+        if (punchCollider != null)
+        {
+            // パンチのコライダーをTriggerとして設定することで、物理的な衝突判定を無効にする
+            punchCollider.isTrigger = true;
+        }
     }
 
+    // パンチアニメーションのルーチン
     private IEnumerator PunchRoutine()
     {
         while (true)
         {
+            // パンチ中は次のパンチを開始しない
             if (isPunching)
             {
-                // パンチが発射されている間は待機
                 yield return null;
                 continue;
             }
 
+            // パンチ処理を開始するフラグを立てる
             isPunching = true;
-            yield return new WaitForSeconds(delay); // 遅延時間を待つ
 
-            // パンチの移動先を計算
+            // 次のパンチまでの遅延時間を待つ
+            yield return new WaitForSeconds(delay);
+
+            // パンチの最終位置を設定
             Vector3 targetPosition = originalPosition + new Vector3(moveDistance_x, 0, moveDistance);
             float elapsedTime = 0f;
 
-            // スムーズに移動するための処理
+            // パンチの移動アニメーションを進める
             while (elapsedTime < duration)
             {
+                // アニメーションの進行具合（0～1の範囲）
                 float t = elapsedTime / duration;
+                // 線形補間で位置を計算して移動させる
                 transform.localPosition = Vector3.Lerp(originalPosition, targetPosition, t);
-                //lineRenderer.SetPositions(new Vector3[] { originalPosition, transform.localPosition }); // ラインレンダラーで軌跡を描画
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
-            // パンチを元の位置に戻す
+            // 最後に元の位置に戻す
             transform.localPosition = originalPosition;
+            // パンチ処理が完了したことを示すフラグを解除
+            isPunching = false;
 
-            // ラインレンダラーの位置を更新
-            //lineRenderer.SetPositions(new Vector3[] { originalPosition, originalPosition });
-
-            isPunching = false; // パンチが完了したのでフラグを戻す
-
-            // 3回パンチがプレイヤーに当たったらゲームオーバー
+            // パンチが3回当たった場合、ゲームオーバーシーンに遷移する
             if (hitCount >= 3)
             {
-                LoadGameOverScene(); // ゲームオーバーシーンに遷移
+                LoadGameOverScene();
             }
         }
     }
 
-    // プレイヤーにパンチが当たった時に呼ばれる
+    // プレイヤーとパンチが衝突したときの処理
     private void OnTriggerEnter(Collider other)
     {
-        // プレイヤーにパンチが当たった場合
+        // 衝突したオブジェクトが「Player」タグのオブジェクトであるかを確認
         if (other.CompareTag("Player"))
         {
-            hitCount++; // 当たった回数をカウント
+            // ヒットカウントをインクリメント
+            hitCount++;
             Debug.Log("パンチが当たった回数: " + hitCount);
 
-            // もし3回当たったらゲームオーバーシーンに遷移
+            // プレイヤーの PlayerController コンポーネントを取得して、パンチによる無敵状態を開始
+            PlayerController playerController = other.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                // プレイヤーにパンチ無敵を付与
+                playerController.EnablePunchInvincibility(); // パンチ無敵状態を開始
+            }
+
+            // ヒットカウントが3回に達したらゲームオーバーシーンに遷移
             if (hitCount >= 3)
             {
-                LoadGameOverScene(); // ゲームオーバーシーンに遷移
+                LoadGameOverScene();
             }
         }
     }
 
-    // ゲームオーバーシーンに遷移する処理
+    // ゲームオーバーシーンに遷移する
     private void LoadGameOverScene()
     {
-        SceneManager.LoadScene(gameOverSceneName); // シーン遷移
-    }
-
-    void OnDisable()
-    {
-        // スクリプトが無効になった時にラインを消す
-        //lineRenderer.positionCount = 0;
+        // ゲームオーバーシーンをロード
+        SceneManager.LoadScene(gameOverSceneName);
     }
 }
