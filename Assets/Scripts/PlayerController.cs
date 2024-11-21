@@ -1,146 +1,111 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;  // 新しいInput Systemの名前空間を追加
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rb;
+    [Header("移動の速さ"), SerializeField]
+    private float _speed = 3;
 
-    // Movement Settings: プレイヤーの移動に関する設定
-    [Header("Movement Settings")]
-    [SerializeField] public float walkSpeed = 5f;      // 歩行時のスピード
-    [SerializeField] public float sprintSpeed = 10f;   // ダッシュ時のスピード
-    [SerializeField] public float jumpForce = 5f;     // ジャンプの力
+    [Header("ジャンプする瞬間の速さ"), SerializeField]
+    private float _jumpSpeed = 7;
 
-    // Ground Detection: 地面判定に関する設定
-    [Header("Ground Detection")]
-    public LayerMask groundLayer;     // 地面と判定するレイヤーマスク
-    [SerializeField] public float groundCheckDistance = 0.1f; // 地面判定の距離
+    [Header("重力加速度"), SerializeField]
+    private float _gravity = 15;
 
-    // Audio: サウンドに関する設定
-    [Header("Audio")]
-    public AudioClip jumpSound;       // ジャンプ時のサウンド
-    public AudioClip sprintSound;     // ダッシュ時のサウンド
+    [Header("落下時の速さ制限（Infinityで無制限）"), SerializeField]
+    private float _fallSpeed = 10;
 
-    private bool isGrounded;          // プレイヤーが地面に接しているか
-    private bool isSprinting;         // プレイヤーがダッシュしているか
-    private AudioSource audioSource;  // サウンドを再生するためのAudioSourceコンポーネント
+    [Header("落下の初速"), SerializeField]
+    private float _initFallSpeed = 2;
 
-    private Vector2 moveInput;        // プレイヤーの移動入力
-    private bool jumpInput;           // プレイヤーのジャンプ入力
-    private bool sprintInput;         // プレイヤーのダッシュ入力
+    private Transform _transform;
+    private CharacterController _characterController;
 
-    void Start()
-    {
-        // Rigidbody コンポーネントを取得して、物理演算を有効にする
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true; // 回転を固定する（キャラクターが回転しないように）
+    private Vector2 _inputMove;
+    private float _verticalVelocity;
+    private float _turnVelocity;
+    private bool _isGroundedPrev;
 
-        // AudioSource コンポーネントを取得
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
-        // 毎フレーム、入力に基づいて移動、ジャンプ、ダッシュを処理
-        HandleMovement();
-        HandleJump();
-        HandleSprinting();
-        CheckGround();  // 地面に接しているか確認
-    }
-
-    // プレイヤーの移動処理
-    private void HandleMovement()
-    {
-        // 入力に基づいて移動方向を取得
-        Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-
-        // 入力を基に移動方向を作成（x, z 平面での移動）
-        if (moveDirection.magnitude >= 0.1f)
-        {
-            Move(moveDirection);  // 移動処理
-        }
-    }
-
-    // プレイヤーの移動処理
-    private void Move(Vector3 direction)
-    {
-        // 移動速度を決定（ダッシュしていればダッシュ速度、そうでなければ歩行速度）
-        float speed = isSprinting ? sprintSpeed : walkSpeed;
-
-        // Rigidbody を使って移動する
-        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);  // Rigidbody で物理的に移動
-    }
-
-    // ジャンプ処理
-    private void HandleJump()
-    {
-        // ジャンプボタンが押され、かつ地面にいる場合にジャンプ
-        if (jumpInput && isGrounded)
-        {
-            Jump(); // ジャンプ処理
-        }
-    }
-
-    // ジャンプ処理の実行
-    private void Jump()
-    {
-        // Y軸方向の速度を変更してジャンプする
-        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);  // X, Z方向の速度は維持しつつ、Y軸方向に力を加える
-        audioSource.PlayOneShot(jumpSound); // ジャンプ音を再生
-    }
-
-    // ダッシュ処理
-    private void HandleSprinting()
-    {
-        if (sprintInput && !isSprinting)
-        {
-            isSprinting = true;  // ダッシュ状態にする
-            audioSource.PlayOneShot(sprintSound); // ダッシュ音を再生
-        }
-        else if (!sprintInput && isSprinting)
-        {
-            isSprinting = false;  // ダッシュを終了
-        }
-    }
-
-    // 地面に接しているかを確認する処理
-    private void CheckGround()
-    {
-        // プレイヤーが地面に接しているかをチェックする
-        // Raycastで下方向にレイを飛ばし、指定した距離内に地面があれば地面に接していると判断
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
-    }
-
-    // 新しいInput Systemでの入力処理
+    /// <summary>
+    /// 移動Action(PlayerInput側から呼ばれる)
+    /// </summary>
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>(); // 移動入力の取得
+        // 入力値を保持しておく
+        _inputMove = context.ReadValue<Vector2>();
     }
 
+    /// <summary>
+    /// ジャンプAction(PlayerInput側から呼ばれる)
+    /// </summary>
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            jumpInput = true;  // ジャンプが開始されたとき
-        }
-        else if (context.canceled)
-        {
-            jumpInput = false;  // ジャンプ入力がキャンセルされたとき
-        }
+        Debug.Log("Jump");
+        // ボタンが押された瞬間かつ着地している時だけ処理
+        if (!context.performed || !_characterController.isGrounded) return;
+
+        // 鉛直上向きに速度を与える
+        _verticalVelocity = _jumpSpeed;
     }
 
-    public void OnSprint(InputAction.CallbackContext context)
+    private void Awake()
     {
-        if (context.started)
+        _transform = transform;
+        _characterController = GetComponent<CharacterController>();
+    }
+
+    private void Update()
+    {
+        var isGrounded = _characterController.isGrounded;
+
+        if (isGrounded && !_isGroundedPrev)
         {
-            sprintInput = true;  // ダッシュが開始されたとき
+            // 着地する瞬間に落下の初速を指定しておく
+            _verticalVelocity = -_initFallSpeed;
         }
-        else if (context.canceled)
+        else if (!isGrounded)
         {
-            sprintInput = false;  // ダッシュ入力がキャンセルされたとき
+            // 空中にいるときは、下向きに重力加速度を与えて落下させる
+            _verticalVelocity -= _gravity * Time.deltaTime;
+
+            // 落下する速さ以上にならないように補正
+            if (_verticalVelocity < -_fallSpeed)
+                _verticalVelocity = -_fallSpeed;
+        }
+
+        _isGroundedPrev = isGrounded;
+
+        // 操作入力と鉛直方向速度から、現在速度を計算
+        var moveVelocity = new Vector3(
+            _inputMove.x * _speed,
+            _verticalVelocity,
+            _inputMove.y * _speed
+        );
+        // 現在フレームの移動量を移動速度から計算
+        var moveDelta = moveVelocity * Time.deltaTime;
+
+        // CharacterControllerに移動量を指定し、オブジェクトを動かす
+        _characterController.Move(moveDelta);
+
+        if (_inputMove != Vector2.zero)
+        {
+            // 移動入力がある場合は、振り向き動作も行う
+
+            // 操作入力からy軸周りの目標角度[deg]を計算
+            var targetAngleY = -Mathf.Atan2(_inputMove.y, _inputMove.x)
+                * Mathf.Rad2Deg + 90;
+
+            // イージングしながら次の回転角度[deg]を計算
+            var angleY = Mathf.SmoothDampAngle(
+                _transform.eulerAngles.y,
+                targetAngleY,
+                ref _turnVelocity,
+                0.1f
+            );
+
+            // オブジェクトの回転を更新
+            _transform.rotation = Quaternion.Euler(0, angleY, 0);
         }
     }
 }
