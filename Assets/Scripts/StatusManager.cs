@@ -16,6 +16,8 @@ public class StatusManager : MonoBehaviour
     [SerializeField] string TagName;            //当たり判定となるタグ
     public GameObject[] lifeArray = new GameObject[3]; //HPのゲームオブジェクト
     private int lifePoint = 3;
+    [SerializeField]
+    private string GameOverScene;
 
     // Update is called once per frame
     void Update()
@@ -53,7 +55,7 @@ public class StatusManager : MonoBehaviour
         //var effect = Instantiate(destroyEffect);
         //effect.transform.position = transform.position;
         //Destroy(effect, 5);
-        SceneManager.LoadScene("GameOverScene"); // インスペクターで設定されたシーン名を使用してロード
+        SceneManager.LoadScene(GameOverScene); // インスペクターで設定されたシーン名を使用してロード
 
     }
 

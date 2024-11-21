@@ -9,7 +9,8 @@ public class CountdownTimer : MonoBehaviour
 
     // カウントダウンの開始時間（秒）
     [SerializeField] private float timeRemaining = 180f;  // 3分 = 180秒
-
+    [SerializeField]
+    private string ClearScene;
     void Start()
     {
         // 初期テキストの表示
@@ -31,7 +32,7 @@ public class CountdownTimer : MonoBehaviour
             UpdateTimeDisplay(timeRemaining);
             // 終了時に何かしたい場合はここに処理を追加
             // 例: Debug.Log("Time's up!");
-            SceneManager.LoadScene("ClearScene");
+            SceneManager.LoadScene(ClearScene);
         }
     }
 

@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseUI: {fileID: 1199927176}
-  sceneToLoad: GameScene3 2
+  sceneToLoad: GameScene3 3
 --- !u!4 &197688767
 Transform:
   m_ObjectHideFlags: 0
@@ -3058,7 +3058,7 @@ MonoBehaviour:
   - {fileID: 359000973}
   - {fileID: 1066584100}
   - {fileID: 913035077}
-  GameOverScene: GameOverScene
+  GameOverScene: GameOverScene 1
 --- !u!4 &652682862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 401062, guid: ff2098c0501788540ac0f68232a120ca, type: 3}
@@ -10136,7 +10136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdownText: {fileID: 2017310334}
   timeRemaining: 180
-  ClearScene: ClearScene
+  ClearScene: ClearScene 1
 --- !u!114 &2017310334
 MonoBehaviour:
   m_ObjectHideFlags: 0

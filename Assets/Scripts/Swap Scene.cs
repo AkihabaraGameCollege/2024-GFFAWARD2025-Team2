@@ -23,6 +23,19 @@ public class SwapScene : MonoBehaviour
     {
         SceneManager.LoadScene("IntroScene");
     }
+    public void OnClickStage2Button()
+    {
+        SceneManager.LoadScene("GameScene3 3");
+    }
+    public void OnClickStage3Button()
+    {
+        SceneManager.LoadScene("GameScene3 4");
+    }
+    public void OnClickSelectButton()
+    {
+        SceneManager.LoadScene("SelectScene");
+    }
+
 
 
 

@@ -899,7 +899,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1703516200}
         m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
-        m_MethodName: OnClickIntroScene
+        m_MethodName: OnClickSelectButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
