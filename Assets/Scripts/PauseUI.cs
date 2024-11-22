@@ -7,7 +7,8 @@ public class PauseManager : MonoBehaviour
     private bool isPaused = false; // ゲームがポーズ中かどうかを追跡
     [SerializeField]
     private string sceneToLoad; // リトライ時にロードするシーン名をインスペクターで設定
-
+    public GameObject PlayerHPUI;
+    public GameObject TimerUI;
     void Update()
     {
         // キーボードのEscキー
@@ -31,11 +32,16 @@ public class PauseManager : MonoBehaviour
         {
             Time.timeScale = 0f; // ポーズ：時間を止める
             PauseUI.SetActive(true); // ポーズメニューを表示
-        }
+            PlayerHPUI.SetActive(false);
+            TimerUI.SetActive(false);
+
+}
         else
         {
             Time.timeScale = 1f; // 再開：時間を元に戻す
             PauseUI.SetActive(false); // ポーズメニューを表示
+            PlayerHPUI.SetActive(true);
+            TimerUI.SetActive(true);
         }
     }
     // 再開ボタンが押されたときにポーズを解除

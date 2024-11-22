@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3072056971196267264}
   - component: {fileID: 7544417111155615664}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: SmallEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 30.02, y: 0.6, z: 266.9}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6753576626856510692}
@@ -94,6 +94,8 @@ MonoBehaviour:
   delay: 1
   duration: 0.5
   moveDistance: 28
+  moveDistance_x: 28
+  gameOverSceneName: GameOverScene
 --- !u!1 &2401668894124794353
 GameObject:
   m_ObjectHideFlags: 0
