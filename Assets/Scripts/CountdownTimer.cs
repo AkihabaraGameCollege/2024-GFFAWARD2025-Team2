@@ -1,16 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using TMPro;  // TextMeshProを使用するために必要
 
 public class CountdownTimer : MonoBehaviour
 {
-    // UIのTextコンポーネントを参照
-    public Text countdownText;
+    // TextMeshProUGUIのTextコンポーネントを参照
+    public TextMeshProUGUI countdownText;  // TextMeshProUGUIに変更
 
     // カウントダウンの開始時間（秒）
     [SerializeField] private float timeRemaining = 180f;  // 3分 = 180秒
     [SerializeField]
     private string ClearScene;
+
     void Start()
     {
         // 初期テキストの表示

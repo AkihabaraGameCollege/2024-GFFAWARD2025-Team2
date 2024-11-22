@@ -79,11 +79,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Slider _staminaSlider;
 
-    // ダッシュ音の設定
-    [Header("ダッシュ音")]
-    [SerializeField]
-    private AudioClip _sprintAudioClip;
+    // ダッシュ音とジャンプ音のAudioClip
+    [Header("音声設定")]
+    [SerializeField] private AudioClip _sprintSound;
+    [SerializeField] private AudioClip _jumpSound;
 
+    // プレイヤーのAudioSource
     private AudioSource _audioSource;
 
     private void Awake()
@@ -91,8 +92,7 @@ public class PlayerController : MonoBehaviour
         // コンポーネントの初期化
         _transform = transform;
         _characterController = GetComponent<CharacterController>();
-        _audioSource = GetComponent<AudioSource>();  // AudioSourceの取得
-
+        _audioSource = GetComponent<AudioSource>(); // AudioSourceの取得
         _currentStamina = _maxStamina;
 
         // スタミナUIの設定
@@ -127,13 +127,8 @@ public class PlayerController : MonoBehaviour
             {
                 _isSprinting = false;
                 DisableInvincibility();
-            }
-
-            // ダッシュ音の再生
-            if (!_audioSource.isPlaying && _sprintAudioClip != null)
-            {
-                _audioSource.clip = _sprintAudioClip;
-                _audioSource.Play();
+                // ダッシュ音を停止
+                _audioSource.Stop();
             }
         }
         else
@@ -141,12 +136,6 @@ public class PlayerController : MonoBehaviour
             // スプリントしていないときはスタミナを回復
             _currentStamina += _staminaRecoveryRate * Time.deltaTime;
             if (_currentStamina > _maxStamina) _currentStamina = _maxStamina;
-
-            // ダッシュ音の停止
-            if (_audioSource.isPlaying)
-            {
-                _audioSource.Stop();
-            }
         }
 
         // スタミナUIの更新
@@ -208,6 +197,13 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!context.performed || !_characterController.isGrounded) return;
+
+        // ジャンプ音を再生
+        if (_jumpSound != null)
+        {
+            _audioSource.PlayOneShot(_jumpSound);
+        }
+
         _verticalVelocity = _jumpSpeed;
     }
 
@@ -216,13 +212,19 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && _currentStamina > 0 && _inputMove != Vector2.zero)
         {
-            // WASDキーが押されている場合のみスプリント開始
+            // スプリント音を再生
+            if (_sprintSound != null && !_audioSource.isPlaying)
+            {
+                _audioSource.PlayOneShot(_sprintSound);
+            }
+
             _isSprinting = true;
         }
         else if (context.canceled || _currentStamina <= 0 || _inputMove == Vector2.zero)
         {
-            // スプリント終了（WASDキーが押されていないか、スタミナが無くなった場合）
+            // スプリント終了
             _isSprinting = false;
+            _audioSource.Stop(); // ダッシュ音を停止
         }
     }
 
