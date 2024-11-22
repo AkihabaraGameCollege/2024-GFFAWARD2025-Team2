@@ -79,11 +79,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Slider _staminaSlider;
 
+    // ダッシュ音の設定
+    [Header("ダッシュ音")]
+    [SerializeField]
+    private AudioClip _sprintAudioClip;
+
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         // コンポーネントの初期化
         _transform = transform;
         _characterController = GetComponent<CharacterController>();
+        _audioSource = GetComponent<AudioSource>();  // AudioSourceの取得
+
         _currentStamina = _maxStamina;
 
         // スタミナUIの設定
@@ -119,12 +128,25 @@ public class PlayerController : MonoBehaviour
                 _isSprinting = false;
                 DisableInvincibility();
             }
+
+            // ダッシュ音の再生
+            if (!_audioSource.isPlaying && _sprintAudioClip != null)
+            {
+                _audioSource.clip = _sprintAudioClip;
+                _audioSource.Play();
+            }
         }
         else
         {
             // スプリントしていないときはスタミナを回復
             _currentStamina += _staminaRecoveryRate * Time.deltaTime;
             if (_currentStamina > _maxStamina) _currentStamina = _maxStamina;
+
+            // ダッシュ音の停止
+            if (_audioSource.isPlaying)
+            {
+                _audioSource.Stop();
+            }
         }
 
         // スタミナUIの更新
