@@ -937,8 +937,9 @@ MonoBehaviour:
   _fallSpeed: 10
   _initFallSpeed: 2
   _maxStamina: 100
-  _staminaRecoveryRate: 5
+  _staminaRecoveryRate: 10
   _sprintStaminaDrainRate: 10
+  _invincibilityDuration: 10
   _staminaSlider: {fileID: 0}
 --- !u!114 &9025500926967030339
 MonoBehaviour:
