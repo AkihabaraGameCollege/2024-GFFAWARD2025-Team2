@@ -192,14 +192,14 @@ public class PlayerController : MonoBehaviour
     // スプリント入力を処理
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.performed && _currentStamina > 0)
+        if (context.performed && _currentStamina > 0 && _inputMove != Vector2.zero)
         {
-            // スプリント開始
+            // WASDキーが押されている場合のみスプリント開始
             _isSprinting = true;
         }
-        else if (context.canceled || _currentStamina <= 0)
+        else if (context.canceled || _currentStamina <= 0 || _inputMove == Vector2.zero)
         {
-            // スプリント終了
+            // スプリント終了（WASDキーが押されていないか、スタミナが無くなった場合）
             _isSprinting = false;
         }
     }
