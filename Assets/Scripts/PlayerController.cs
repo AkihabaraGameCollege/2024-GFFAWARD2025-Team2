@@ -41,17 +41,6 @@ public class PlayerController : MonoBehaviour
     [Header("スタミナ消費速度"), SerializeField]
     private float _sprintStaminaDrainRate = 10f;
 
-    // 無敵時間（秒）
-    [Header("無敵時間"), SerializeField]
-    private float _invincibilityDuration = 10.0f;
-
-    // 無敵時間のタイマー
-    private float _invincibilityTimer = 0.0f;
-
-    // 無敵状態フラグ（通常とパンチ時の無敵）
-    private bool _isInvincible = false;
-    private bool _isPunchInvincible = false;
-
     // プレイヤーのTransformとCharacterControllerの参照
     private Transform _transform;
     private CharacterController _characterController;
@@ -101,20 +90,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // 無敵状態の処理
-        if (_isInvincible || _isPunchInvincible)
-        {
-            _invincibilityTimer += Time.deltaTime;
-
-            // 無敵時間が終了したら無敵を解除
-            if (_invincibilityTimer >= (_isPunchInvincible ? 1.0f : _invincibilityDuration))  // パンチ無敵は1秒
-            {
-                _isInvincible = false;
-                _isPunchInvincible = false;
-                _invincibilityTimer = 0.0f;
-            }
-        }
-
         // スタミナの管理
         if (_isSprinting)
         {
@@ -126,7 +101,6 @@ public class PlayerController : MonoBehaviour
             if (_currentStamina == 0)
             {
                 _isSprinting = false;
-                DisableInvincibility();
                 // ダッシュ音を停止
                 _audioSource.Stop();
             }
@@ -225,36 +199,6 @@ public class PlayerController : MonoBehaviour
             // スプリント終了
             _isSprinting = false;
             _audioSource.Stop(); // ダッシュ音を停止
-        }
-    }
-
-    // 通常の無敵状態を有効化
-    private void EnableInvincibility()
-    {
-        if (!_isInvincible && !_isPunchInvincible)
-        {
-            _isInvincible = true;
-            _invincibilityTimer = 0.0f;
-        }
-    }
-
-    // 無敵状態を解除
-    private void DisableInvincibility()
-    {
-        if (_isInvincible)
-        {
-            _isInvincible = false;
-            _invincibilityTimer = 0.0f;
-        }
-    }
-
-    // パンチを受けた場合の無敵を有効化
-    public void EnablePunchInvincibility()
-    {
-        if (!_isPunchInvincible)
-        {
-            _isPunchInvincible = true;
-            _invincibilityTimer = 0.0f;
         }
     }
 }
