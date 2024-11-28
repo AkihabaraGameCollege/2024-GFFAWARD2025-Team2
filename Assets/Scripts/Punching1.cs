@@ -14,8 +14,9 @@ public class Punching1 : MonoBehaviour
     public float moveDistance_x = 28f;
     // ゲームオーバー時に遷移するシーン名
     public string gameOverSceneName = "GameOverScene";
-    //イノシシのアクティブ化
+    //イノシシ
     public GameObject GameObject;
+    public GameObject GameObject1;
     // パンチの開始位置（ゲームオブジェクトのローカル位置）
     private Vector3 originalPosition;
     // パンチが現在実行中かどうかを示すフラグ
@@ -77,6 +78,8 @@ public class Punching1 : MonoBehaviour
             transform.localPosition = originalPosition;
             // パンチ処理が完了したことを示すフラグを解除
             isPunching = false;
+            GameObject.SetActive(false);
+            GameObject1.SetActive(true);
 
             // パンチが3回当たった場合、ゲームオーバーシーンに遷移する
             if (hitCount >= 3)
