@@ -104,7 +104,7 @@ public class Punching1 : MonoBehaviour
             if (playerController != null)
             {
                 // プレイヤーにパンチ無敵を付与
-                playerController.EnablePunchInvincibility(); // パンチ無敵状態を開始
+                //playerController.EnablePunchInvincibility(); // パンチ無敵状態を開始
             }
 
             // ヒットカウントが3回に達したらゲームオーバーシーンに遷移
