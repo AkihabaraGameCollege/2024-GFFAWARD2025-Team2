@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     private float _turnVelocity;
 
     // 前回地面に接触しているかどうかの状態
-    private bool _isGroundedPrev;
+    [SerializeField] private bool _isGroundedPrev;
 
     // スプリント中かどうか
     private bool _isSprinting;
@@ -76,12 +76,19 @@ public class PlayerController : MonoBehaviour
     // プレイヤーのAudioSource
     private AudioSource _audioSource;
 
+    // アニメーターと走り判定用のbool
+    private Animator playerAnimator;
+    private bool isRun = false;
+    private bool isWalk = false;
+    private bool isIdle = false;
+
     private void Awake()
     {
         // コンポーネントの初期化
         _transform = transform;
         _characterController = GetComponent<CharacterController>();
         _audioSource = GetComponent<AudioSource>(); // AudioSourceの取得
+        playerAnimator = GetComponent<Animator>(); // Animatorの取得
         _currentStamina = _maxStamina;
 
         // スタミナUIの設定
@@ -159,6 +166,16 @@ public class PlayerController : MonoBehaviour
             var angleY = Mathf.SmoothDampAngle(_transform.eulerAngles.y, targetAngleY, ref _turnVelocity, 0.1f);
             _transform.rotation = Quaternion.Euler(0, angleY, 0);
         }
+
+        // 走っているかどうかの判定
+        isRun = (_inputMove != Vector2.zero && _isSprinting);
+        isWalk = (_inputMove != Vector2.zero && !_isSprinting);  // 走っていない、移動中 → 歩行状態
+        isIdle = !isRun && !isWalk;  // 移動していない → アイドル状態
+
+        // Animatorに状態を送る
+        playerAnimator.SetBool("Run", isRun);
+        playerAnimator.SetBool("Walk", isWalk);
+        playerAnimator.SetBool("Idle", isIdle);
     }
 
     // 移動入力を処理
@@ -171,6 +188,9 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!context.performed || !_characterController.isGrounded) return;
+
+        //AnimatorにJumpのトリガーを送る
+        playerAnimator.SetTrigger("Jump");
 
         // ジャンプ音を再生
         if (_jumpSound != null)

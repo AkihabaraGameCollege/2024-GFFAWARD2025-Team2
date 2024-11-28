@@ -8788,6 +8788,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4961834537231086398, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7442461834737d54aa910eec5c05a033, type: 2}
     - target: {fileID: 5651463331479698783, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10307,7 +10311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownText: {fileID: 253603611}
-  countdownDuration: 3
+  countdownDuration: 0.1
   spritesToHide:
   - {fileID: 1254563601}
 --- !u!4 &1610781859
