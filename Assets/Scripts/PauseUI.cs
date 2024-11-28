@@ -9,6 +9,7 @@ public class PauseManager : MonoBehaviour
     private string sceneToLoad; // リトライ時にロードするシーン名をインスペクターで設定
     public GameObject PlayerHPUI;
     public GameObject TimerUI;
+    public GameObject SutainaUI;
     void Update()
     {
         // キーボードのEscキー
@@ -34,6 +35,7 @@ public class PauseManager : MonoBehaviour
             PauseUI.SetActive(true); // ポーズメニューを表示
             PlayerHPUI.SetActive(false);
             TimerUI.SetActive(false);
+            SutainaUI.SetActive(false);
 
 }
         else
@@ -42,6 +44,7 @@ public class PauseManager : MonoBehaviour
             PauseUI.SetActive(false); // ポーズメニューを表示
             PlayerHPUI.SetActive(true);
             TimerUI.SetActive(true);
+            SutainaUI.SetActive(true) ;
         }
     }
     // 再開ボタンが押されたときにポーズを解除
