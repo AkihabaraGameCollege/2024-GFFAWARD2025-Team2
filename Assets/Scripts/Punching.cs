@@ -95,14 +95,6 @@ public class Punching : MonoBehaviour
             hitCount++;
             Debug.Log("パンチが当たった回数: " + hitCount);
 
-            // プレイヤーの PlayerController コンポーネントを取得して、パンチによる無敵状態を開始
-            PlayerController playerController = other.GetComponent<PlayerController>();
-            if (playerController != null)
-            {
-                // プレイヤーにパンチ無敵を付与
-                playerController.EnablePunchInvincibility(); // パンチ無敵状態を開始
-            }
-
             // ヒットカウントが3回に達したらゲームオーバーシーンに遷移
             if (hitCount >= 3)
             {
