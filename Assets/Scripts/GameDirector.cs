@@ -1,7 +1,7 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;  // TextMeshProの名前空間をインポート
+using TMPro;
+using System.Collections;
 
 public class GameDirector : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class GameDirector : MonoBehaviour
     public TextMeshProUGUI countdownText;  // TextMeshProUGUIを使う
     public float countdownDuration = 3f;  // カウントダウンの時間（秒）
     public SpriteRenderer[] spritesToHide;  // 非表示にしたいスプライトを格納する配列
+    private GameTimer gameTimer;  // GameTimerへの参照
 
     void Start()
     {
@@ -16,6 +17,9 @@ public class GameDirector : MonoBehaviour
 
         // ゲーム開始前にスプライトを表示する
         HideSprites(false);
+
+        // GameTimerコンポーネントを取得
+        gameTimer = FindObjectOfType<GameTimer>();
 
         // ゲーム開始前にカウントダウンを実行
         StartCoroutine(StartCountdown());
@@ -35,12 +39,13 @@ public class GameDirector : MonoBehaviour
             yield return new WaitForSecondsRealtime(1);  // 実際の時間で1秒待機
         }
 
-
         // テキストを少し左にずらす
         RectTransform rectTransform = countdownText.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x - 2, rectTransform.anchoredPosition.y);
-        // 「GO」を表示
+
+        // 「GO!!」を表示
         countdownText.text = "GO!!";
+
         yield return new WaitForSecondsRealtime(1);  // 実際の時間で1秒待機
 
         // カウントダウン終了後にスプライトを非表示にする

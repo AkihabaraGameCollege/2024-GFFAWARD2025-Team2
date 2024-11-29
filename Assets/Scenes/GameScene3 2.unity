@@ -3765,6 +3765,7 @@ MonoBehaviour:
   _maxStamina: 100
   _staminaRecoveryRate: 10
   _sprintStaminaDrainRate: 10
+  _isGroundedPrev: 0
   _staminaSlider: {fileID: 0}
   _sprintSound: {fileID: 0}
   _jumpSound: {fileID: 0}
