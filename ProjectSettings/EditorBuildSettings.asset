@@ -12,19 +12,19 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/Scenes/Old/GameScene.unity
     guid: 26504849f1028e248b295a36f5a7a104
   - enabled: 1
     path: Assets/Scenes/Clear/ClearScene.unity
     guid: 5ed01e71f297fec4b97a1cd865747250
   - enabled: 0
-    path: Assets/Scenes/GameScene 2.unity
+    path: Assets/Scenes/Old/GameScene 2.unity
     guid: b1eae4da497eb78438deb9e90ea4d47b
   - enabled: 0
-    path: Assets/Scenes/GameScene3.unity
+    path: Assets/Scenes/Old/GameScene3.unity
     guid: f63e561235667f94481979122a2ea800
   - enabled: 0
-    path: Assets/Scenes/GameScene3 1.unity
+    path: Assets/Scenes/Old/GameScene3 1.unity
     guid: 176a715524c87b94db6a79bcfe0e3cd2
   - enabled: 1
     path: Assets/Scenes/IntroScene.unity
