@@ -3765,6 +3765,7 @@ MonoBehaviour:
   _maxStamina: 100
   _staminaRecoveryRate: 10
   _sprintStaminaDrainRate: 10
+  _isGroundedPrev: 0
   _staminaSlider: {fileID: 0}
   _sprintSound: {fileID: 0}
   _jumpSound: {fileID: 0}
@@ -6696,6 +6697,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 803678016464701896, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: _speed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 803678016464701896, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: _jumpSound
       value: 
       objectReference: {fileID: 8300000, guid: d488d73d328fcee4baa01a1a5a8f0805, type: 3}
@@ -6703,6 +6708,10 @@ PrefabInstance:
       propertyPath: _sprintSound
       value: 
       objectReference: {fileID: 8300000, guid: 611190e36a215cd4ea787a5b762cff00, type: 3}
+    - target: {fileID: 803678016464701896, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: _sprintSpeed
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 803678016464701896, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: _staminaSlider
       value: 
