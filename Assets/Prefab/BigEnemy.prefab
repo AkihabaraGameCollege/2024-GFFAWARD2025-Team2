@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 30.02, y: 0.6, z: 266.9}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 100.00004, y: 100, z: 100.00004}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6753576626856510692}
@@ -91,10 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499e72b0645076d4189b99bcebfde80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 1
-  duration: 0.5
-  moveDistance: 28
-  moveDistance_x: 28
+  delay: 3
+  duration: 6
+  moveDistance: 0
+  moveDistance_x: 450
   gameOverSceneName: GameOverScene
 --- !u!1 &2401668894124794353
 GameObject:
@@ -561,7 +561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7712925684737507694
 Transform:
   m_ObjectHideFlags: 0
