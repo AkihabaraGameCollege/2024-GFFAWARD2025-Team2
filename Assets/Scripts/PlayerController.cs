@@ -82,6 +82,9 @@ public class PlayerController : MonoBehaviour
     private bool isWalk = false;
     private bool isIdle = false;
 
+    // ジャンプ中かどうか
+    private bool isJumping = false;
+
     private void Awake()
     {
         // コンポーネントの初期化
@@ -132,6 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             // 地面に着いた瞬間、初速で少し浮き上がる
             _verticalVelocity = -_initFallSpeed;
+            isJumping = false;  // ジャンプが終了した
         }
         else if (!isGrounded)
         {
@@ -141,6 +145,8 @@ public class PlayerController : MonoBehaviour
             // 落下速度制限
             if (_verticalVelocity < -_fallSpeed)
                 _verticalVelocity = -_fallSpeed;
+
+            isJumping = true;  // ジャンプ中
         }
 
         _isGroundedPrev = isGrounded;
@@ -167,10 +173,37 @@ public class PlayerController : MonoBehaviour
             _transform.rotation = Quaternion.Euler(0, angleY, 0);
         }
 
-        // 走っているかどうかの判定
-        isRun = (_inputMove != Vector2.zero && _isSprinting);
-        isWalk = (_inputMove != Vector2.zero && !_isSprinting);  // 走っていない、移動中 → 歩行状態
-        isIdle = !isRun && !isWalk;  // 移動していない → アイドル状態
+        // ジャンプ後の移動アニメーション
+        if (!isJumping)
+        {
+            // 走っているかどうかの判定
+            isRun = (_inputMove != Vector2.zero && _isSprinting);
+
+            // 歩いているかどうかの判定
+            isWalk = (_inputMove != Vector2.zero && !_isSprinting);  // 走っていない、移動中 → 歩行状態
+        }
+        else
+        {
+            // ジャンプ中はアニメーションを「ラン」や「ウォーク」に遷移させない
+            isRun = false;
+            isWalk = false;
+        }
+
+        // アイドル状態の判定
+        isIdle = (_inputMove == Vector2.zero && !_isSprinting && !isJumping);  // 移動していないかつスプリントしていない → アイドル状態
+
+        // ジャンプ終了後にランやウォークに戻る
+        if (!isJumping && _inputMove != Vector2.zero)
+        {
+            if (_isSprinting)
+            {
+                isRun = true;
+            }
+            else
+            {
+                isWalk = true;
+            }
+        }
 
         // Animatorに状態を送る
         playerAnimator.SetBool("Run", isRun);
@@ -189,9 +222,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!context.performed || !_characterController.isGrounded) return;
 
-        //AnimatorにJumpのトリガーを送る
-        playerAnimator.SetTrigger("Jump");
-
         // ジャンプ音を再生
         if (_jumpSound != null)
         {
@@ -199,6 +229,7 @@ public class PlayerController : MonoBehaviour
         }
 
         _verticalVelocity = _jumpSpeed;
+        isJumping = true; // ジャンプ開始
     }
 
     // スプリント入力を処理
