@@ -4,16 +4,28 @@ using UnityEngine.SceneManagement;
 
 public class Punching : MonoBehaviour
 {
-    // パンチの遅延時間（秒）
+    // パンチの遅延時間（秒） - パンチを開始するまでの待機時間
+    [Header("パンチの遅延時間（秒）"), SerializeField]
     public float delay = 1.0f;
-    // パンチのアニメーションの時間（秒）
+    // パンチのアニメーションの時間（秒） - パンチを移動させるのにかかる時間
+    [Header("パンチのアニメーションの時間（秒）"), SerializeField]
     public float duration = 0.5f;
     // パンチの移動距離（Z軸方向）
+    [Header("パンチの移動距離（Z軸方向）"), SerializeField]
     public float moveDistance = 28f;
     // パンチの移動距離（X軸方向）
+    [Header("パンチの移動距離（X軸方向）"), SerializeField]
     public float moveDistance_x = 28f;
     // ゲームオーバー時に遷移するシーン名
+    [Header("ゲームオーバー時に遷移するシーン名"), SerializeField]
     public string gameOverSceneName = "GameOverScene";
+
+    // スタート時間（遅延時間の開始位置）
+    [Header("スタート時間（遅延時間の開始位置）"), SerializeField]
+    public float startDelay = 1.0f;
+    // 終了時間（パンチの終了位置）
+    [Header("終了時間（パンチの終了位置）"), SerializeField]
+    public float endDelay = 3.0f;
 
     // パンチの開始位置（ゲームオブジェクトのローカル位置）
     private Vector3 originalPosition;
@@ -55,7 +67,7 @@ public class Punching : MonoBehaviour
             isPunching = true;
 
             // 次のパンチまでの遅延時間を待つ
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(startDelay);  // startDelayを使用
 
             // パンチの最終位置を設定
             Vector3 targetPosition = originalPosition + new Vector3(moveDistance_x, 0, moveDistance);
@@ -82,6 +94,9 @@ public class Punching : MonoBehaviour
             {
                 LoadGameOverScene();
             }
+
+            // 次のパンチまでの終了遅延時間を待つ
+            yield return new WaitForSeconds(endDelay); // endDelayを使用
         }
     }
 
