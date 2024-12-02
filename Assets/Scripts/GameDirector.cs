@@ -5,16 +5,29 @@ using System.Collections;
 
 public class GameDirector : MonoBehaviour
 {
-    GameObject hpGauge;
-    public TextMeshProUGUI countdownText;  // TextMeshProUGUIを使う
-    public float countdownDuration = 3f;  // カウントダウンの時間（秒）
-    public SpriteRenderer[] spritesToHide;  // 非表示にしたいスプライトを格納する配列
+    // ゲームの進行に関する設定
+    // HPゲージ設定
+    [Header("HPゲージ設定")]
+    [SerializeField] private GameObject hpGauge;  // HPゲージのGameObject
+
+    // カウントダウン設定
+    [Header("カウントダウン設定")]
+    [SerializeField] private float countdownDuration = 3f;  // カウントダウンの時間（秒）
+
+    // UI表示に関する設定
+    [Header("カウントダウン表示設定")]
+    [SerializeField] private TextMeshProUGUI countdownText;  // カウントダウン表示用のTextMeshProUGUI
+
+    // スプライト非表示設定
+    [Header("非表示スプライト設定")]
+    [SerializeField] private SpriteRenderer[] spritesToHide;  // 非表示にしたいスプライトを格納する配列
+
+    // ゲームタイマーに関する設定
+    [Header("ゲームタイマー設定")]
     private GameTimer gameTimer;  // GameTimerへの参照
 
     void Start()
     {
-        this.hpGauge = GameObject.Find("hpGauge");
-
         // ゲーム開始前にスプライトを表示する
         HideSprites(false);
 
@@ -65,6 +78,7 @@ public class GameDirector : MonoBehaviour
         }
     }
 
+    // HPが減少した時に呼ばれる関数
     public void DecreaseHp()
     {
         this.hpGauge.GetComponent<UnityEngine.UI.Image>().fillAmount -= 0.1f;
@@ -72,7 +86,7 @@ public class GameDirector : MonoBehaviour
         if (image.fillAmount < 0.1f)
         {
             Debug.Log(image.fillAmount);
-            SceneManager.LoadScene("ClearScene");
+            SceneManager.LoadScene("ClearScene");  // HPが0.1未満になったらシーンを遷移
         }
     }
 }

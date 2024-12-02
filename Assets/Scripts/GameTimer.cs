@@ -4,8 +4,18 @@ using TMPro;
 
 public class GameTimer : MonoBehaviour
 {
-    public TextMeshProUGUI countdownText;  // タイマー用のTextMeshProUGUI
-    [SerializeField] private float timeRemaining = 181f;  // 3分1秒 (181秒)
+    // タイマー設定
+    [Header("タイマー設定")]
+    [SerializeField] private float timeRemaining = 181f;  // 残り時間 (秒)
+    [Header("タイマー残り時間")]
+    [SerializeField] private float initialTime = 181f;  // 初期の時間 (秒)
+
+    // タイマー表示用設定
+    [Header("タイマー表示設定")]
+    [SerializeField] private TextMeshProUGUI countdownText;  // タイマー表示用のTextMeshProUGUI
+
+    // ゲームクリア後のシーン遷移設定
+    [Header("ゲームクリア後の設定")]
     [SerializeField] private string ClearScene;  // ゲームクリア後に遷移するシーン名
 
     void Start()
