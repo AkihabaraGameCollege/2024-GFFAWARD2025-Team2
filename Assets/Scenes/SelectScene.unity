@@ -272,9 +272,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1703516203}
         m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
-        m_MethodName: OnClickSelectButton
+        m_MethodName: OnClickStage2Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -404,9 +404,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1703516203}
         m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
-        m_MethodName: OnClickSelectButton
+        m_MethodName: OnClickStage3Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -536,9 +536,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1703516203}
         m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
-        m_MethodName: OnClickSelectButton
+        m_MethodName: OnClickTitleButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1164,9 +1164,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1703516203}
         m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
-        m_MethodName: OnClickSelectButton
+        m_MethodName: OnClickStartButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1296,9 +1296,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1703516203}
         m_TargetAssemblyTypeName: SwapScene, Assembly-CSharp
-        m_MethodName: OnClickSelectButton
+        m_MethodName: OnClickIntroScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
