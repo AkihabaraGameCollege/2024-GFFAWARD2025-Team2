@@ -18,10 +18,12 @@ public class StatusManager : MonoBehaviour
     private int lifePoint = 3;
     [SerializeField]
     private string GameOverScene;
-
+    [SerializeField]
+    private bool invincibleTime = false; //無敵時間
     // Update is called once per frame
     void Update()
     {
+
         //hpが0以下なら、撃破エフェクトを生成してMainを破壊
         if (hp <= 0)
         {
@@ -36,7 +38,10 @@ public class StatusManager : MonoBehaviour
         if (other.CompareTag(TagName))
         {
             Debug.Log("Hit2");
-            Damage();
+            if (!invincibleTime)
+            {
+                Damage();
+            }
         }
     }
     private void Damage()
@@ -47,6 +52,9 @@ public class StatusManager : MonoBehaviour
         lifePoint--;//要素を一つ－する
         //var effect = Instantiate(damageEffect);
         //effect.transform.position = transform.position;
+        invincibleTime = true;
+        StartCoroutine(Damageinvinble());
+
     }
     private void DestoryMainObject()
     {
@@ -58,5 +66,11 @@ public class StatusManager : MonoBehaviour
         SceneManager.LoadScene(GameOverScene); // インスペクターで設定されたシーン名を使用してロード
 
     }
+    private IEnumerator Damageinvinble()
+    {
+        yield return new WaitForSeconds(3f);
+        invincibleTime = false;
+        Debug.Log("muteki");
 
+    }
 }
