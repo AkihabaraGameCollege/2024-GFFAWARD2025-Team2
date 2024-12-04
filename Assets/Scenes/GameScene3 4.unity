@@ -4584,6 +4584,7 @@ MonoBehaviour:
   _sprintSound: {fileID: 0}
   _jumpSound: {fileID: 0}
   _WalkSound: {fileID: 0}
+  gameDirector: {fileID: 0}
 --- !u!54 &779097512
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8397,7 +8398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3880021277893862863, guid: 0baa48623aa2df04a8372602f2557d2d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10793,6 +10794,7 @@ MonoBehaviour:
   countdownText: {fileID: 253603611}
   spritesToHide:
   - {fileID: 1254563601}
+  isCountdown: 1
 --- !u!4 &1610781859
 Transform:
   m_ObjectHideFlags: 0
