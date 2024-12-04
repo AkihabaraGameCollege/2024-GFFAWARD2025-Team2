@@ -3698,6 +3698,7 @@ MonoBehaviour:
   _sprintSound: {fileID: 0}
   _jumpSound: {fileID: 0}
   _WalkSound: {fileID: 0}
+  gameDirector: {fileID: 0}
 --- !u!54 &779097512
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6655,6 +6656,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: loopcount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: MeshRenderer
+      value: 
+      objectReference: {fileID: 1313875536}
+    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: flashInterval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: lifeArray.Array.data[0]
       value: 
       objectReference: {fileID: 1317555174}
@@ -6671,6 +6684,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+--- !u!137 &1313875536 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 732164139133126935, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+  m_PrefabInstance: {fileID: 1313875535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1315916919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
@@ -7959,6 +7977,7 @@ MonoBehaviour:
   countdownText: {fileID: 479774974811225504}
   spritesToHide:
   - {fileID: 7122301978622910339}
+  isCountdown: 1
 --- !u!4 &1610781859
 Transform:
   m_ObjectHideFlags: 0

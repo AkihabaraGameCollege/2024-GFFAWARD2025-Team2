@@ -3516,6 +3516,9 @@ MonoBehaviour:
   - {fileID: 913035077}
   GameOverScene: GameOverScene 1
   invincibleTime: 0
+  flashInterval: 0.1
+  loopcount: 15
+  MeshRenderer: {fileID: 1313875538}
 --- !u!4 &652682862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 401062, guid: ff2098c0501788540ac0f68232a120ca, type: 3}
@@ -4147,6 +4150,8 @@ MonoBehaviour:
   _staminaSlider: {fileID: 0}
   _sprintSound: {fileID: 0}
   _jumpSound: {fileID: 0}
+  _WalkSound: {fileID: 0}
+  gameDirector: {fileID: 0}
 --- !u!54 &779097512
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7819,6 +7824,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5651463331479698783, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
   m_PrefabInstance: {fileID: 1313875535}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &1313875538 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 732164139133126935, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+  m_PrefabInstance: {fileID: 1313875535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1315916919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
@@ -9382,6 +9392,7 @@ MonoBehaviour:
   countdownText: {fileID: 1739965936}
   spritesToHide:
   - {fileID: 2112598156}
+  isCountdown: 1
 --- !u!4 &1610781859
 Transform:
   m_ObjectHideFlags: 0
