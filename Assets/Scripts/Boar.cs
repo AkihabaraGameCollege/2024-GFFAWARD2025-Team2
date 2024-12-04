@@ -4,9 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class Boar : MonoBehaviour
 {
-    // イノシシの移動開始までの遅延時間（秒）
-    [Header("イノシシの移動開始までの遅延時間（秒）"), SerializeField]
-    public float delay = 1.0f;
     // イノシシの移動にかかる時間（秒）
     [Header("イノシシの移動にかかる時間"), SerializeField]
     public float duration = 0.5f;
@@ -21,10 +18,17 @@ public class Boar : MonoBehaviour
     public string gameOverSceneName = "GameOverScene";
 
     // イノシシの遅延開始時間（秒）
-    [Header("スタート時間（遅延時間の開始位置）"), SerializeField]
-    public float startDelay = 1.0f;
+    [Header("Wave開始時間"), SerializeField]
+    public float startTime = 1.0f;
+    // イノシシの遅延開始時間（秒）
+    [Header("Wave終了時間"), SerializeField]
+    public float endTime = 10f;
+
+    // 終了時間（イノシシの開始位置）
+    [Header("開始ディレイ時間（イノシシの1サイクルの時間）"), SerializeField]
+    public float startDelay = 3.0f;
     // 終了時間（イノシシの終了位置）
-    [Header("終了時間（イノシシの終了位置）"), SerializeField]
+    [Header("終了ディレイ時間（イノシシの1サイクルの時間）"), SerializeField]
     public float endDelay = 3.0f;
 
     // イノシシの初期位置（ゲームオブジェクトのローカル位置）
@@ -42,6 +46,7 @@ public class Boar : MonoBehaviour
         // イノシシの移動処理を開始
         StartCoroutine(PunchRoutine());
 
+
         // イノシシのコライダーがTriggerとして設定されているか確認
         Collider punchCollider = GetComponent<Collider>();
         if (punchCollider != null)
@@ -54,7 +59,13 @@ public class Boar : MonoBehaviour
     // イノシシの移動アニメーション処理
     private IEnumerator PunchRoutine()
     {
-        while (true)
+        float waveStartTime = Time.time; // 開始時間を記録
+
+        // イノシシの移動開始までの遅延時間を待つ
+        yield return new WaitForSeconds(startTime);  // startDelayを使用
+
+
+        while (Time.time - waveStartTime < endTime) // endTimeが経過するまで繰り返す
         {
             // すでに移動中の場合は次の移動を待機
             if (isPunching)
@@ -65,9 +76,6 @@ public class Boar : MonoBehaviour
 
             // 移動を開始するフラグを立てる
             isPunching = true;
-
-            // 次のイノシシの移動開始までの遅延時間を待つ
-            yield return new WaitForSeconds(startDelay);  // startDelayを使用
 
             // 移動先の最終位置を設定
             Vector3 targetPosition = originalPosition + new Vector3(moveDistance_x, 0, moveDistance);
@@ -98,6 +106,8 @@ public class Boar : MonoBehaviour
             // 次のイノシシまでの終了遅延時間を待つ
             yield return new WaitForSeconds(endDelay); // endDelayを使用
         }
+
+        Destroy(this.gameObject); // endTimeが経過したら破壊
     }
 
     // プレイヤーと衝突したときの処理
@@ -124,4 +134,6 @@ public class Boar : MonoBehaviour
         // ゲームオーバーシーンをロード
         SceneManager.LoadScene(gameOverSceneName);
     }
+
+
 }
