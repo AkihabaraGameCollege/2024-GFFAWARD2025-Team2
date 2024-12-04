@@ -1,199 +1,246 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    // ƒvƒŒƒCƒ„[‚ÌˆÚ“®‘¬“x
-    [Header("ˆÚ“®‚Ì‘¬‚³"), SerializeField]
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•é€Ÿåº¦
+    [Header("ç§»å‹•ã®é€Ÿã•"), SerializeField]
     private float _speed = 3;
 
-    // ƒXƒvƒŠƒ“ƒg‚ÌˆÚ“®‘¬“x
-    [Header("ƒXƒvƒŠƒ“ƒg‚Ì‘¬‚³"), SerializeField]
+    // ã‚¹ãƒ—ãƒªãƒ³ãƒˆæ™‚ã®ç§»å‹•é€Ÿåº¦
+    [Header("ã‚¹ãƒ—ãƒªãƒ³ãƒˆæ™‚ã®é€Ÿã•"), SerializeField]
     private float _sprintSpeed = 6;
 
-    // ƒWƒƒƒ“ƒv‚·‚éuŠÔ‚Ì‘¬“x
-    [Header("ƒWƒƒƒ“ƒv‚·‚éuŠÔ‚Ì‘¬‚³"), SerializeField]
+    // ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ç¬é–“ã®é€Ÿåº¦
+    [Header("ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ç¬é–“ã®é€Ÿã•"), SerializeField]
     private float _jumpSpeed = 7;
 
-    // d—Í‰Á‘¬“x
-    [Header("d—Í‰Á‘¬“x"), SerializeField]
+    // é‡åŠ›åŠ é€Ÿåº¦
+    [Header("é‡åŠ›åŠ é€Ÿåº¦"), SerializeField]
     private float _gravity = 15;
 
-    // —‰º‚Ì‘¬‚³§ŒÀi–³§ŒÀ‚Ìê‡‚ÍInfinityj
-    [Header("—‰º‚Ì‘¬‚³§ŒÀiInfinity‚Å–³§ŒÀj"), SerializeField]
+    // è½ä¸‹æ™‚ã®é€Ÿã•åˆ¶é™ï¼ˆç„¡åˆ¶é™ã®å ´åˆã¯Infinityï¼‰
+    [Header("è½ä¸‹æ™‚ã®é€Ÿã•åˆ¶é™ï¼ˆInfinityã§ç„¡åˆ¶é™ï¼‰"), SerializeField]
     private float _fallSpeed = 10;
 
-    // —‰º‚Ì‰‘¬
-    [Header("—‰º‚Ì‰‘¬"), SerializeField]
+    // è½ä¸‹ã®åˆé€Ÿ
+    [Header("è½ä¸‹ã®åˆé€Ÿ"), SerializeField]
     private float _initFallSpeed = 2;
 
-    // ƒXƒ^ƒ~ƒi‚ÌÅ‘å’l
-    [Header("ƒXƒ^ƒ~ƒi‚ÌÅ‘å’l"), SerializeField]
+    // ã‚¹ã‚¿ãƒŸãƒŠã®æœ€å¤§å€¤
+    [Header("ã‚¹ã‚¿ãƒŸãƒŠã®æœ€å¤§å€¤"), SerializeField]
     private float _maxStamina = 100f;
 
-    // ƒXƒ^ƒ~ƒi‰ñ•œ‘¬“x
-    [Header("ƒXƒ^ƒ~ƒi‰ñ•œ‘¬“x"), SerializeField]
+    // ã‚¹ã‚¿ãƒŸãƒŠå›å¾©é€Ÿåº¦
+    [Header("ã‚¹ã‚¿ãƒŸãƒŠå›å¾©é€Ÿåº¦"), SerializeField]
     private float _staminaRecoveryRate = 10f;
 
-    // ƒXƒvƒŠƒ“ƒg‚ÌƒXƒ^ƒ~ƒiÁ”ï‘¬“x
-    [Header("ƒXƒ^ƒ~ƒiÁ”ï‘¬“x"), SerializeField]
+    // ã‚¹ãƒ—ãƒªãƒ³ãƒˆæ™‚ã®ã‚¹ã‚¿ãƒŸãƒŠæ¶ˆè²»é€Ÿåº¦
+    [Header("ã‚¹ã‚¿ãƒŸãƒŠæ¶ˆè²»é€Ÿåº¦"), SerializeField]
     private float _sprintStaminaDrainRate = 10f;
 
-    // ƒvƒŒƒCƒ„[‚ÌTransform‚ÆCharacterController‚ÌQÆ
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®Transformã¨CharacterControllerã®å‚ç…§
     private Transform _transform;
     private CharacterController _characterController;
 
-    // “ü—Í‚³‚ê‚½ˆÚ“®•ûŒüi‰¡Ecj
+    // å…¥åŠ›ã•ã‚ŒãŸç§»å‹•æ–¹å‘ï¼ˆæ¨ªãƒ»ç¸¦ï¼‰
     private Vector2 _inputMove;
 
-    // ‚’¼•ûŒü‚Ì‘¬“xiƒWƒƒƒ“ƒv‚âd—Í‚É‚æ‚é‰e‹¿j
+    // å‚ç›´æ–¹å‘ã®é€Ÿåº¦ï¼ˆã‚¸ãƒ£ãƒ³ãƒ—ã‚„é‡åŠ›ã«ã‚ˆã‚‹å½±éŸ¿ï¼‰
     private float _verticalVelocity;
 
-    // ƒvƒŒƒCƒ„[‚Ì‰ñ“]‘¬“x
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å›è»¢é€Ÿåº¦
     private float _turnVelocity;
 
-    // ‘O‰ñ’n–Ê‚ÉÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìó‘Ô
+    // å‰å›åœ°é¢ã«æ¥è§¦ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®çŠ¶æ…‹
     [SerializeField] private bool _isGroundedPrev;
 
-    // ƒXƒvƒŠƒ“ƒg’†‚©‚Ç‚¤‚©
+    // ã‚¹ãƒ—ãƒªãƒ³ãƒˆä¸­ã‹ã©ã†ã‹
     private bool _isSprinting;
 
-    // Œ»İ‚ÌƒXƒ^ƒ~ƒi
+    // ç¾åœ¨ã®ã‚¹ã‚¿ãƒŸãƒŠ
     private float _currentStamina;
 
-    // ƒXƒ^ƒ~ƒiUI‚ÌƒXƒ‰ƒCƒ_[
-    [Header("ƒXƒ^ƒ~ƒiUI")]
+    // ã‚¹ã‚¿ãƒŸãƒŠUIã®ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
+    [Header("ã‚¹ã‚¿ãƒŸãƒŠUI")]
     [SerializeField]
     private Slider _staminaSlider;
 
-    // ƒ_ƒbƒVƒ…‰¹‚ÆƒWƒƒƒ“ƒv‰¹‚ÌAudioClip
-    [Header("‰¹ºİ’è")]
+    // ãƒ€ãƒƒã‚·ãƒ¥éŸ³ã¨ã‚¸ãƒ£ãƒ³ãƒ—éŸ³ã®AudioClip
+    [Header("éŸ³å£°è¨­å®š")]
     [SerializeField] private AudioClip _sprintSound;
     [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private AudioClip _WalkSound;
 
-    // ƒvƒŒƒCƒ„[‚ÌAudioSource
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®AudioSource
     private AudioSource _audioSource;
 
-    // ƒAƒjƒ[ƒ^[‚Æ‘–‚è”»’è—p‚Ìbool
+    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼ã¨èµ°ã‚Šåˆ¤å®šç”¨ã®bool
     private Animator playerAnimator;
     private bool isRun = false;
     private bool isWalk = false;
     private bool isIdle = false;
 
-    // ƒWƒƒƒ“ƒv’†‚©‚Ç‚¤‚©
+    // ã‚¸ãƒ£ãƒ³ãƒ—ä¸­ã‹ã©ã†ã‹
     private bool isJumping = false;
+
+    // ã‚¹ãƒ—ãƒªãƒ³ãƒˆéŸ³ã¨æ­©è¡ŒéŸ³ã®ãƒ«ãƒ¼ãƒ—å†ç”Ÿã®ãƒ•ãƒ©ã‚°
+    private bool isPlayingSprintSound = false;
+    private bool isPlayingWalkSound = false;
+
+    // ã‚·ãƒ•ãƒˆã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
+    private bool isHoldingShift = false;
 
     private void Awake()
     {
-        // ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‰Šú‰»
+        // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®åˆæœŸåŒ–
         _transform = transform;
         _characterController = GetComponent<CharacterController>();
-        _audioSource = GetComponent<AudioSource>(); // AudioSource‚Ìæ“¾
-        playerAnimator = GetComponent<Animator>(); // Animator‚Ìæ“¾
+        _audioSource = GetComponent<AudioSource>(); // AudioSourceã®å–å¾—
+        playerAnimator = GetComponent<Animator>(); // Animatorã®å–å¾—
         _currentStamina = _maxStamina;
 
-        // ƒXƒ^ƒ~ƒiUI‚Ìİ’è
+        // ã‚¹ã‚¿ãƒŸãƒŠUIã®è¨­å®š
         if (_staminaSlider != null) _staminaSlider.maxValue = _maxStamina;
     }
 
     private void Update()
     {
-        // ƒXƒ^ƒ~ƒi‚ÌŠÇ—
+        // ã‚¹ã‚¿ãƒŸãƒŠã®ç®¡ç†
         if (_isSprinting)
         {
-            // ƒXƒvƒŠƒ“ƒg’†‚ÉƒXƒ^ƒ~ƒi‚ğŒ¸­
+            // ã‚¹ãƒ—ãƒªãƒ³ãƒˆä¸­ã«ã‚¹ã‚¿ãƒŸãƒŠã‚’æ¸›å°‘
             _currentStamina -= _sprintStaminaDrainRate * Time.deltaTime;
-            if (_currentStamina < 0) _currentStamina = 0;
 
-            // ƒXƒ^ƒ~ƒi‚ª–³‚­‚È‚Á‚½‚çƒXƒvƒŠƒ“ƒg‚ğ’â~
-            if (_currentStamina == 0)
+            // ã‚¹ã‚¿ãƒŸãƒŠãŒã‚¼ãƒ­ã«ãªã£ãŸå ´åˆã€ã‚¹ãƒ—ãƒªãƒ³ãƒˆã‚’åœæ­¢
+            if (_currentStamina <= 0)
             {
+                _currentStamina = 0;
                 _isSprinting = false;
-                // ƒ_ƒbƒVƒ…‰¹‚ğ’â~
-                _audioSource.Stop();
+            }
+
+            // ã‚¹ãƒ—ãƒªãƒ³ãƒˆéŸ³ãŒå†ç”Ÿã•ã‚Œã¦ã„ãªã„å ´åˆã¯å†ç”Ÿã™ã‚‹
+            if (!isPlayingSprintSound && _sprintSound != null)
+            {
+                _audioSource.loop = true;  // éŸ³ã‚’ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
+                _audioSource.clip = _sprintSound;
+                _audioSource.Play();
+                isPlayingSprintSound = true;
             }
         }
         else
         {
-            // ƒXƒvƒŠƒ“ƒg‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚ÍƒXƒ^ƒ~ƒi‚ğ‰ñ•œ
-            _currentStamina += _staminaRecoveryRate * Time.deltaTime;
-            if (_currentStamina > _maxStamina) _currentStamina = _maxStamina;
+            // ã‚¹ãƒ—ãƒªãƒ³ãƒˆã—ã¦ã„ãªã„å ´åˆã€ã‚¹ã‚¿ãƒŸãƒŠã‚’å›å¾©
+            if (_currentStamina < _maxStamina)
+            {
+                _currentStamina += _staminaRecoveryRate * Time.deltaTime;
+                if (_currentStamina > _maxStamina)
+                    _currentStamina = _maxStamina;
+            }
+
+            // ã‚¹ãƒ—ãƒªãƒ³ãƒˆéŸ³ãŒå†ç”Ÿã•ã‚Œã¦ã„ãªã„å ´åˆã¯åœæ­¢
+            if (isPlayingSprintSound)
+            {
+                _audioSource.Stop();
+                isPlayingSprintSound = false;
+            }
+
+            // æ­©è¡Œä¸­ã§ã‚ã‚Œã°ã‚¦ã‚©ãƒ¼ã‚¯éŸ³ã‚’å†ç”Ÿ
+            if (_inputMove != Vector2.zero && !isPlayingWalkSound && _WalkSound != null && !_isSprinting)
+            {
+                _audioSource.loop = true;  // éŸ³ã‚’ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
+                _audioSource.clip = _WalkSound;
+                _audioSource.Play();
+                isPlayingWalkSound = true;
+            }
         }
 
-        // ƒXƒ^ƒ~ƒiUI‚ÌXV
-        if (_staminaSlider != null)
+        // æ­©ã„ã¦ã„ãªã„å ´åˆã€ã‚¦ã‚©ãƒ¼ã‚¯éŸ³ã‚’åœæ­¢
+        if (_inputMove == Vector2.zero && isPlayingWalkSound)
         {
-            _staminaSlider.value = _currentStamina;
+            _audioSource.Stop();
+            isPlayingWalkSound = false;
         }
 
-        // ’n–Ê‚ÉÚ’n‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+        // åœ°é¢ã«æ¥åœ°ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
         var isGrounded = _characterController.isGrounded;
 
         if (isGrounded && !_isGroundedPrev)
         {
-            // ’n–Ê‚É’…‚¢‚½uŠÔA‰‘¬‚Å­‚µ•‚‚«ã‚ª‚é
+            // åœ°é¢ã«ç€ã„ãŸç¬é–“ã€åˆé€Ÿã§å°‘ã—æµ®ãä¸ŠãŒã‚‹
             _verticalVelocity = -_initFallSpeed;
-            isJumping = false;  // ƒWƒƒƒ“ƒv‚ªI—¹‚µ‚½
+            isJumping = false;  // ã‚¸ãƒ£ãƒ³ãƒ—ãŒçµ‚äº†ã—ãŸ
         }
         else if (!isGrounded)
         {
-            // ’n–Ê‚É‚¢‚È‚¢ê‡Ad—Í‚Ì‰e‹¿‚Å—‰º‚·‚é
+            // åœ°é¢ã«ã„ãªã„å ´åˆã€é‡åŠ›ã®å½±éŸ¿ã§è½ä¸‹ã™ã‚‹
             _verticalVelocity -= _gravity * Time.deltaTime;
 
-            // —‰º‘¬“x§ŒÀ
+            // è½ä¸‹é€Ÿåº¦åˆ¶é™
             if (_verticalVelocity < -_fallSpeed)
                 _verticalVelocity = -_fallSpeed;
 
-            isJumping = true;  // ƒWƒƒƒ“ƒv’†
+            isJumping = true;  // ã‚¸ãƒ£ãƒ³ãƒ—ä¸­
         }
 
         _isGroundedPrev = isGrounded;
 
-        // ƒXƒvƒŠƒ“ƒg‚Ì‘¬“x’²®
+        // ã‚¹ãƒ—ãƒªãƒ³ãƒˆæ™‚ã®é€Ÿåº¦èª¿æ•´
         float currentSpeed = _isSprinting ? _sprintSpeed : _speed;
 
-        // ˆÚ“®ƒxƒNƒgƒ‹‚ÌŒvZ
+        // ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«ã®è¨ˆç®—
         var moveVelocity = new Vector3(
             _inputMove.x * currentSpeed,
             _verticalVelocity,
             _inputMove.y * currentSpeed
         );
 
-        // ƒLƒƒƒ‰ƒNƒ^[‚ÌˆÚ“®
+        // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ç§»å‹•
         var moveDelta = moveVelocity * Time.deltaTime;
         _characterController.Move(moveDelta);
 
-        // ˆÚ“®“ü—Í‚ª‚ ‚ê‚ÎƒvƒŒƒCƒ„[‚ğ‚»‚Ì•ûŒü‚É‰ñ“]
+        // ç§»å‹•å…¥åŠ›ãŒã‚ã‚Œã°ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ãã®æ–¹å‘ã«å›è»¢
         if (_inputMove != Vector2.zero)
         {
             var targetAngleY = -Mathf.Atan2(_inputMove.y, _inputMove.x) * Mathf.Rad2Deg + 90;
+
+            // è§’åº¦ã‚’0ã€œ360ã®ç¯„å›²ã«åˆ¶é™
+            targetAngleY = Mathf.Repeat(targetAngleY, 360f);
+
+            // ã‚¹ãƒ ãƒ¼ã‚ºã«å›è»¢ã•ã›ã‚‹
             var angleY = Mathf.SmoothDampAngle(_transform.eulerAngles.y, targetAngleY, ref _turnVelocity, 0.1f);
             _transform.rotation = Quaternion.Euler(0, angleY, 0);
         }
 
-        // ƒWƒƒƒ“ƒvŒã‚ÌˆÚ“®ƒAƒjƒ[ƒVƒ‡ƒ“
+        // ã‚¸ãƒ£ãƒ³ãƒ—å¾Œã®ç§»å‹•ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
         if (!isJumping)
         {
-            // ‘–‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è
+            // èµ°ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®š
             isRun = (_inputMove != Vector2.zero && _isSprinting);
 
-            // •à‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è
-            isWalk = (_inputMove != Vector2.zero && !_isSprinting);  // ‘–‚Á‚Ä‚¢‚È‚¢AˆÚ“®’† ¨ •àsó‘Ô
+            // æ­©ã„ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®š
+            isWalk = (_inputMove != Vector2.zero && !_isSprinting);  // èµ°ã£ã¦ã„ãªã„ã€ç§»å‹•ä¸­ â†’ æ­©è¡ŒçŠ¶æ…‹
         }
         else
         {
-            // ƒWƒƒƒ“ƒv’†‚ÍƒAƒjƒ[ƒVƒ‡ƒ“‚ğuƒ‰ƒ“v‚âuƒEƒH[ƒNv‚É‘JˆÚ‚³‚¹‚È‚¢
+            // ã‚¸ãƒ£ãƒ³ãƒ—ä¸­ã¯ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã€Œãƒ©ãƒ³ã€ã‚„ã€Œã‚¦ã‚©ãƒ¼ã‚¯ã€ã«é·ç§»ã•ã›ãªã„
             isRun = false;
             isWalk = false;
+
+            // ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒˆãƒªã‚¬ãƒ¼ã‚’è¨­å®š
+            if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+            {
+                playerAnimator.SetTrigger("Jump");
+            }
         }
 
-        // ƒAƒCƒhƒ‹ó‘Ô‚Ì”»’è
-        isIdle = (_inputMove == Vector2.zero && !_isSprinting && !isJumping);  // ˆÚ“®‚µ‚Ä‚¢‚È‚¢‚©‚ÂƒXƒvƒŠƒ“ƒg‚µ‚Ä‚¢‚È‚¢ ¨ ƒAƒCƒhƒ‹ó‘Ô
+        // ã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹ã®åˆ¤å®š
+        isIdle = (_inputMove == Vector2.zero && !_isSprinting && !isJumping) ||
+                 (isJumping && _inputMove == Vector2.zero && !_isSprinting);  // ã‚¸ãƒ£ãƒ³ãƒ—ä¸­ã§ã‚‚ç§»å‹•ãŒãªã„å ´åˆã¯ã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹
 
-        // ƒWƒƒƒ“ƒvI—¹Œã‚Éƒ‰ƒ“‚âƒEƒH[ƒN‚É–ß‚é
+        // ã‚¸ãƒ£ãƒ³ãƒ—çµ‚äº†å¾Œã«ãƒ©ãƒ³ã‚„ã‚¦ã‚©ãƒ¼ã‚¯ã«æˆ»ã‚‹
         if (!isJumping && _inputMove != Vector2.zero)
         {
             if (_isSprinting)
@@ -206,56 +253,61 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Animator‚Éó‘Ô‚ğ‘—‚é
+        // Animatorã«çŠ¶æ…‹ã‚’é€ã‚‹
         playerAnimator.SetBool("Run", isRun);
         playerAnimator.SetBool("Walk", isWalk);
         playerAnimator.SetBool("Idle", isIdle);
-    }
 
-    // ˆÚ“®“ü—Í‚ğˆ—
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        _inputMove = context.ReadValue<Vector2>();
-        
-        if (_jumpSound != null)
+        // ã‚¹ã‚¿ãƒŸãƒŠUIã®æ›´æ–°
+        if (_staminaSlider != null)
         {
-            _audioSource.PlayOneShot(_WalkSound);
+            _staminaSlider.value = _currentStamina;
         }
     }
 
-    // ƒWƒƒƒ“ƒv“ü—Í‚ğˆ—
+    // ç§»å‹•å…¥åŠ›ã®å‡¦ç†
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        // ç§»å‹•å…¥åŠ›ã‚’å–å¾—
+        _inputMove = context.ReadValue<Vector2>();
+
+        // ã‚·ãƒ•ãƒˆã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã¦ç§»å‹•ãŒã‚ã‚Œã°ã‚¹ãƒ—ãƒªãƒ³ãƒˆ
+        if (isHoldingShift && _inputMove != Vector2.zero)
+        {
+            _isSprinting = true;
+        }
+    }
+
+    // ã‚¸ãƒ£ãƒ³ãƒ—å…¥åŠ›ã‚’å‡¦ç†
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!context.performed || !_characterController.isGrounded) return;
 
-        // ƒWƒƒƒ“ƒv‰¹‚ğÄ¶
+        // ã‚¸ãƒ£ãƒ³ãƒ—éŸ³ã‚’å†ç”Ÿ
         if (_jumpSound != null)
         {
             _audioSource.PlayOneShot(_jumpSound);
         }
 
         _verticalVelocity = _jumpSpeed;
-        isJumping = true; // ƒWƒƒƒ“ƒvŠJn
+        isJumping = true; // ã‚¸ãƒ£ãƒ³ãƒ—é–‹å§‹
     }
 
-    // ƒXƒvƒŠƒ“ƒg“ü—Í‚ğˆ—
+    // ã‚¹ãƒ—ãƒªãƒ³ãƒˆå…¥åŠ›ã‚’å‡¦ç†
+    // ã‚·ãƒ•ãƒˆã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.performed && _currentStamina > 0 && _inputMove != Vector2.zero)
-        {
-            // ƒXƒvƒŠƒ“ƒg‰¹‚ğÄ¶
-            if (_sprintSound != null && !_audioSource.isPlaying)
-            {
-                _audioSource.PlayOneShot(_sprintSound);
-            }
+        // ã‚·ãƒ•ãƒˆã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹çŠ¶æ…‹
+        isHoldingShift = context.performed;
 
+        // ç§»å‹•å…¥åŠ›ãŒã‚ã‚Šã€ã‚·ãƒ•ãƒˆã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚Œã°ã‚¹ãƒ—ãƒªãƒ³ãƒˆé–‹å§‹
+        if (isHoldingShift && _inputMove != Vector2.zero)
+        {
             _isSprinting = true;
         }
-        else if (context.canceled || _currentStamina <= 0 || _inputMove == Vector2.zero)
+        else
         {
-            // ƒXƒvƒŠƒ“ƒgI—¹
             _isSprinting = false;
-            _audioSource.Stop(); // ƒ_ƒbƒVƒ…‰¹‚ğ’â~
         }
     }
 }
