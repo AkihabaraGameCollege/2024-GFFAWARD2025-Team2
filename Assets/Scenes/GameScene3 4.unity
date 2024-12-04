@@ -265,6 +265,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 4
       objectReference: {fileID: 0}
@@ -672,6 +676,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -2213,6 +2221,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 5
       objectReference: {fileID: 0}
@@ -2448,6 +2460,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -2875,6 +2891,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -3587,6 +3607,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 5
       objectReference: {fileID: 0}
@@ -3689,7 +3713,7 @@ MonoBehaviour:
   moveDistance_x: 0
   gameOverSceneName: GameOverScene
   startTime: 1
-  endTime: 10
+  endTime: 180
   startDelay: 1
   endDelay: 3
 --- !u!4 &652682862 stripped
@@ -4259,7 +4283,7 @@ MonoBehaviour:
   moveDistance_x: 450
   gameOverSceneName: GameOverScene
   startTime: 1
-  endTime: 10
+  endTime: 180
   startDelay: 1
   endDelay: 3
 --- !u!1001 &734453949
@@ -4281,6 +4305,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -4851,6 +4879,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 5
       objectReference: {fileID: 0}
@@ -4930,6 +4962,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -5240,6 +5276,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -6291,6 +6331,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 5
       objectReference: {fileID: 0}
@@ -6382,6 +6426,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -6622,6 +6670,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -7062,6 +7114,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 4
       objectReference: {fileID: 0}
@@ -7263,7 +7319,7 @@ MonoBehaviour:
   moveDistance_x: -450
   gameOverSceneName: GameOverScene
   startTime: 1
-  endTime: 10
+  endTime: 180
   startDelay: 1
   endDelay: 3
 --- !u!1001 &1149763993
@@ -8078,6 +8134,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 6
       objectReference: {fileID: 0}
@@ -8440,6 +8500,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 5
       objectReference: {fileID: 0}
@@ -8596,6 +8660,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -8936,6 +9004,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 4
       objectReference: {fileID: 0}
@@ -9223,6 +9295,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -9807,6 +9883,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 4
       objectReference: {fileID: 0}
@@ -10111,7 +10191,7 @@ MonoBehaviour:
   moveDistance_x: 0
   gameOverSceneName: GameOverScene
   startTime: 1
-  endTime: 10
+  endTime: 180
   startDelay: 1
   endDelay: 3
 --- !u!4 &1553494538 stripped
@@ -10148,6 +10228,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -10825,6 +10909,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -12777,6 +12865,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 4
       objectReference: {fileID: 0}
@@ -13115,6 +13207,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
       value: 5
       objectReference: {fileID: 0}
@@ -13194,6 +13290,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
@@ -13367,6 +13467,10 @@ PrefabInstance:
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: delay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
+      propertyPath: endTime
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7544417111155615664, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: duration
