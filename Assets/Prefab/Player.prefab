@@ -744,7 +744,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15, y: 5.15, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalScale: {x: 12, y: 12, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8877726597845605362}
@@ -944,6 +944,7 @@ MonoBehaviour:
   _staminaSlider: {fileID: 0}
   _sprintSound: {fileID: 8300000, guid: 611190e36a215cd4ea787a5b762cff00, type: 3}
   _jumpSound: {fileID: 8300000, guid: d488d73d328fcee4baa01a1a5a8f0805, type: 3}
+  _WalkSound: {fileID: 8300000, guid: 8b79cbd039c979846b5a7492539bb58d, type: 3}
 --- !u!114 &9025500926967030339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,6 +1600,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   GameOverScene: GameOverScene 2
+  invincibleTime: 0
 --- !u!65 &2636799826333511376
 BoxCollider:
   m_ObjectHideFlags: 0
