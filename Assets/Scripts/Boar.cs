@@ -18,10 +18,10 @@ public class Boar : MonoBehaviour
     public string gameOverSceneName = "GameOverScene";
 
     // イノシシの遅延開始時間（秒）
-    [Header("Wave開始時間"), SerializeField]
+    [Header("移動開始時間"), SerializeField]
     public float startTime = 1.0f;
     // イノシシの遅延開始時間（秒）
-    [Header("Wave終了時間"), SerializeField]
+    [Header("移動終了時間"), SerializeField]
     public float endTime = 10f;
 
     // 終了時間（イノシシの開始位置）
