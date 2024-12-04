@@ -3684,11 +3684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499e72b0645076d4189b99bcebfde80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 20
   duration: 4
   moveDistance: -300
   moveDistance_x: 0
   gameOverSceneName: GameOverScene
+  startTime: 1
+  endTime: 10
   startDelay: 1
   endDelay: 3
 --- !u!4 &652682862 stripped
@@ -4253,11 +4254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499e72b0645076d4189b99bcebfde80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 30
   duration: 6
   moveDistance: 0
   moveDistance_x: 450
   gameOverSceneName: GameOverScene
+  startTime: 1
+  endTime: 10
   startDelay: 1
   endDelay: 3
 --- !u!1001 &734453949
@@ -4581,6 +4583,7 @@ MonoBehaviour:
   _staminaSlider: {fileID: 0}
   _sprintSound: {fileID: 0}
   _jumpSound: {fileID: 0}
+  _WalkSound: {fileID: 0}
 --- !u!54 &779097512
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7254,11 +7257,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499e72b0645076d4189b99bcebfde80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 30
   duration: 6
   moveDistance: 0
   moveDistance_x: -450
   gameOverSceneName: GameOverScene
+  startTime: 1
+  endTime: 10
   startDelay: 1
   endDelay: 3
 --- !u!1001 &1149763993
@@ -8145,6 +8149,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
   m_PrefabInstance: {fileID: 1225820409}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &1228181055 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 732164139133126935, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+  m_PrefabInstance: {fileID: 1313875535}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1230475722
 PrefabInstance:
@@ -9066,6 +9075,18 @@ PrefabInstance:
     - target: {fileID: 5651463331479698783, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: loopcount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: MeshRenderer
+      value: 
+      objectReference: {fileID: 1228181055}
+    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: flashInterval
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: lifeArray.Array.data[0]
@@ -10084,11 +10105,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499e72b0645076d4189b99bcebfde80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 20
   duration: 4
   moveDistance: -300
   moveDistance_x: 0
   gameOverSceneName: GameOverScene
+  startTime: 1
+  endTime: 10
   startDelay: 1
   endDelay: 3
 --- !u!4 &1553494538 stripped

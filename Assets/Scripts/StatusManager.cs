@@ -20,6 +20,12 @@ public class StatusManager : MonoBehaviour
     private string GameOverScene;
     [SerializeField]
     private bool invincibleTime = false; //無敵時間
+    [SerializeField]
+    float flashInterval; //点滅の間隔
+    [SerializeField]
+    int loopcount; //点滅させる回数
+    [SerializeField]
+    SkinnedMeshRenderer MeshRenderer; //プレイヤーのRenderer
     // Update is called once per frame
     void Update()
     {
@@ -68,9 +74,21 @@ public class StatusManager : MonoBehaviour
     }
     private IEnumerator Damageinvinble()
     {
-        yield return new WaitForSeconds(3f);
-        invincibleTime = false;
         Debug.Log("muteki");
+        //点滅ループをスタート
+        for(int i = 0; i < loopcount; i++)
+        {
+            //点滅の周期を待ってから
+            yield return new WaitForSeconds(flashInterval);
+            //プレイヤーのrendererをオフにする
+            MeshRenderer.enabled = false;
 
+            //点滅の周期を待ってから
+            yield return new WaitForSeconds(flashInterval);
+            //プレイヤーのrendererをオンにする
+            MeshRenderer.enabled = true;
+        }
+        invincibleTime = false;
+        
     }
 }
