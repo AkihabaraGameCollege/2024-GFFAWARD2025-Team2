@@ -96,6 +96,9 @@ public class PlayerController : MonoBehaviour
     // ゲームディレクターの参照
     [SerializeField] private GameDirector gameDirector;
 
+    // ポーズマネージャーの参照
+    private PauseManager _pauseManager; // PauseManagerの参照を追加
+
     private void Awake()
     {
         // コンポーネントの初期化
@@ -108,11 +111,21 @@ public class PlayerController : MonoBehaviour
         // スタミナUIの設定
         if (_staminaSlider != null) _staminaSlider.maxValue = _maxStamina;
 
+        // ゲームディレクターの参照
         gameDirector = FindObjectOfType<GameDirector>();
+
+        // PauseManagerの参照を取得
+        _pauseManager = FindObjectOfType<PauseManager>();
     }
 
     private void Update()
     {
+        // ポーズ中なら入力を無効化
+        if (_pauseManager.IsPaused)
+        {
+            return; // ポーズ中は入力処理を行わない
+        }
+
         // カウントダウン中は入力を無効にする
         if (gameDirector.isCountdown)
         {

@@ -10,6 +10,10 @@ public class PauseManager : MonoBehaviour
     public GameObject PlayerHPUI;
     public GameObject TimerUI;
     public GameObject SutainaUI;
+
+    // isPausedプロパティを公開
+    public bool IsPaused => isPaused;
+
     void Update()
     {
         // キーボードのEscキー
@@ -36,22 +40,23 @@ public class PauseManager : MonoBehaviour
             PlayerHPUI.SetActive(false);
             TimerUI.SetActive(false);
             SutainaUI.SetActive(false);
-
-}
+        }
         else
         {
             Time.timeScale = 1f; // 再開：時間を元に戻す
-            PauseUI.SetActive(false); // ポーズメニューを表示
+            PauseUI.SetActive(false); // ポーズメニューを非表示
             PlayerHPUI.SetActive(true);
             TimerUI.SetActive(true);
-            SutainaUI.SetActive(true) ;
+            SutainaUI.SetActive(true);
         }
     }
+
     // 再開ボタンが押されたときにポーズを解除
     public void ResumeGame()
     {
         TogglePause(); // ポーズを解除
     }
+
     // リトライボタンが押されたときにステージをリロード
     public void RetryStage()
     {
@@ -65,10 +70,9 @@ public class PauseManager : MonoBehaviour
             Debug.LogError("シーン名が設定されていません！");
         }
     }
+
     public void OnClickTitleButton()
     {
         SceneManager.LoadScene("Title Scene");
     }
-
-
 }
