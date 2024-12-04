@@ -3689,6 +3689,8 @@ MonoBehaviour:
   moveDistance: -300
   moveDistance_x: 0
   gameOverSceneName: GameOverScene
+  startDelay: 1
+  endDelay: 3
 --- !u!4 &652682862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 401062, guid: ff2098c0501788540ac0f68232a120ca, type: 3}
@@ -4256,6 +4258,8 @@ MonoBehaviour:
   moveDistance: 0
   moveDistance_x: 450
   gameOverSceneName: GameOverScene
+  startDelay: 1
+  endDelay: 3
 --- !u!1001 &734453949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4391,7 +4395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: 48734ba96dfe2b04d8d56af297d67c5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 64
+      value: 78.1
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: 48734ba96dfe2b04d8d56af297d67c5d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4399,7 +4403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: 48734ba96dfe2b04d8d56af297d67c5d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 135
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: 48734ba96dfe2b04d8d56af297d67c5d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5998,7 +6002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: 48734ba96dfe2b04d8d56af297d67c5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -44
+      value: -54.3
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: 48734ba96dfe2b04d8d56af297d67c5d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6006,7 +6010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: 48734ba96dfe2b04d8d56af297d67c5d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 133
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: 48734ba96dfe2b04d8d56af297d67c5d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6637,7 +6641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.1
+      value: -51.1
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7255,6 +7259,8 @@ MonoBehaviour:
   moveDistance: 0
   moveDistance_x: -450
   gameOverSceneName: GameOverScene
+  startDelay: 1
+  endDelay: 3
 --- !u!1001 &1149763993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8603,7 +8609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.8
+      value: 40.4
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9019,7 +9025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1475970062479105023, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5651463331479698783, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9218,7 +9224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.5
+      value: 79.7
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10083,6 +10089,8 @@ MonoBehaviour:
   moveDistance: -300
   moveDistance_x: 0
   gameOverSceneName: GameOverScene
+  startDelay: 1
+  endDelay: 3
 --- !u!4 &1553494538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 401062, guid: ff2098c0501788540ac0f68232a120ca, type: 3}
@@ -10758,8 +10766,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ac5490218a8d24e99e54d9569a64ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownText: {fileID: 253603611}
+  hpGauge: {fileID: 0}
   countdownDuration: 0.1
+  countdownText: {fileID: 253603611}
   spritesToHide:
   - {fileID: 1254563601}
 --- !u!4 &1610781859
@@ -12765,7 +12774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.9
+      value: -25.3
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13184,7 +13193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.9
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
       propertyPath: m_LocalPosition.y
