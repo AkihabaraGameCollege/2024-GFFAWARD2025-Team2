@@ -3697,6 +3697,7 @@ MonoBehaviour:
   _staminaSlider: {fileID: 0}
   _sprintSound: {fileID: 0}
   _jumpSound: {fileID: 0}
+  _WalkSound: {fileID: 0}
 --- !u!54 &779097512
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6590,6 +6591,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 803678016464701896, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: _WalkSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b79cbd039c979846b5a7492539bb58d, type: 3}
+    - target: {fileID: 803678016464701896, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: _staminaSlider
       value: 
       objectReference: {fileID: 695061686}
@@ -7949,8 +7954,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ac5490218a8d24e99e54d9569a64ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownText: {fileID: 479774974811225504}
+  hpGauge: {fileID: 0}
   countdownDuration: 3
+  countdownText: {fileID: 479774974811225504}
   spritesToHide:
   - {fileID: 7122301978622910339}
 --- !u!4 &1610781859
