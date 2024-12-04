@@ -93,6 +93,9 @@ public class PlayerController : MonoBehaviour
     // シフトキーが押されているかどうか
     private bool isHoldingShift = false;
 
+    // ゲームディレクターの参照
+    [SerializeField] private GameDirector gameDirector;
+
     private void Awake()
     {
         // コンポーネントの初期化
@@ -104,10 +107,18 @@ public class PlayerController : MonoBehaviour
 
         // スタミナUIの設定
         if (_staminaSlider != null) _staminaSlider.maxValue = _maxStamina;
+
+        gameDirector = FindObjectOfType<GameDirector>();
     }
 
     private void Update()
     {
+        // カウントダウン中は入力を無効にする
+        if (gameDirector.isCountdown)
+        {
+            return;  // カウントダウン中は入力処理を行わない
+        }
+
         // スタミナの管理
         if (_isSprinting)
         {
@@ -268,6 +279,8 @@ public class PlayerController : MonoBehaviour
     // 移動入力の処理
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (gameDirector.isCountdown) return;  // カウントダウン中は入力を無効に
+
         // 移動入力を取得
         _inputMove = context.ReadValue<Vector2>();
 
@@ -281,6 +294,8 @@ public class PlayerController : MonoBehaviour
     // ジャンプ入力を処理
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (gameDirector.isCountdown) return;  // カウントダウン中は入力を無効に
+
         if (!context.performed || !_characterController.isGrounded) return;
 
         // ジャンプ音を再生
@@ -297,6 +312,8 @@ public class PlayerController : MonoBehaviour
     // シフトキーが押されたときの処理
     public void OnSprint(InputAction.CallbackContext context)
     {
+        if (gameDirector.isCountdown) return;  // カウントダウン中は入力を無効に
+
         // シフトキーが押されている状態
         isHoldingShift = context.performed;
 

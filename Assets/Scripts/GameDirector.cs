@@ -26,6 +26,9 @@ public class GameDirector : MonoBehaviour
     [Header("ゲームタイマー設定")]
     private GameTimer gameTimer;  // GameTimerへの参照
 
+    // カウントダウン中かどうかを示すフラグ
+    public bool isCountdown = true;
+
     void Start()
     {
         // ゲーム開始前にスプライトを表示する
@@ -67,6 +70,9 @@ public class GameDirector : MonoBehaviour
 
         // タイムスケールを元に戻してゲーム開始
         Time.timeScale = 1;
+
+        // カウントダウン終了フラグをfalseに
+        isCountdown = false;
     }
 
     // 指定したスプライトを非表示/表示にする関数
