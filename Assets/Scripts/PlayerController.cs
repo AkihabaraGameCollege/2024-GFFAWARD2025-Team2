@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
     [Header("音声設定")]
     [SerializeField] private AudioClip _sprintSound;
     [SerializeField] private AudioClip _jumpSound;
+    [SerializeField] private AudioClip _WalkSound;
 
     // プレイヤーのAudioSource
     private AudioSource _audioSource;
@@ -215,6 +216,11 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _inputMove = context.ReadValue<Vector2>();
+        
+        if (_jumpSound != null)
+        {
+            _audioSource.PlayOneShot(_WalkSound);
+        }
     }
 
     // ジャンプ入力を処理
