@@ -340,4 +340,9 @@ public class PlayerController : MonoBehaviour
             _isSprinting = false;
         }
     }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        _pauseManager.TogglePause();
+    }
 }

@@ -16,20 +16,20 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        // キーボードのEscキー
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePause();
-        }
+        //// キーボードのEscキー
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    TogglePause();
+        //}
 
-        // ゲームパッドのStartボタン
-        if (Input.GetButtonDown("Submit"))
-        {
-            TogglePause();
-        }
+        //// ゲームパッドのStartボタン
+        //if (Input.GetButtonDown("Submit"))
+        //{
+        //    TogglePause();
+        //}
     }
 
-    void TogglePause()
+    public void TogglePause()
     {
         isPaused = !isPaused; // ポーズ状態を反転
 
