@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a60b10f52f5874391b2d51874c5573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownText: {fileID: 9046921273293936585}
   timeRemaining: 180
-  ClearScene: 
+  initialTime: 181
+  countdownText: {fileID: 9046921273293936585}
+  ClearScene: ClearScene
