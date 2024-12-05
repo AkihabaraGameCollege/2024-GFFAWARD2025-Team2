@@ -6,9 +6,9 @@ public class GameTimer : MonoBehaviour
 {
     // タイマー設定
     [Header("タイマー設定")]
-    [SerializeField] private float timeRemaining = 181f;  // 残り時間 (秒)
+    [SerializeField] private float timeRemaining = 179f;  // 残り時間 (秒)
     [Header("初期タイマー設定")]
-    [SerializeField] private float initialTime = 181f;  // 初期の時間 (秒)
+    [SerializeField] private float initialTime = 179f;  // 初期の時間 (秒)
 
     // タイマー表示用設定
     [Header("タイマー表示設定")]

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;  // UIのImageコンポーネントを使用するために追加
 
 public class GameDirector : MonoBehaviour
 {
@@ -18,9 +19,9 @@ public class GameDirector : MonoBehaviour
     [Header("カウントダウン表示設定")]
     [SerializeField] private TextMeshProUGUI countdownText;  // カウントダウン表示用のTextMeshProUGUI
 
-    // スプライト非表示設定
-    [Header("非表示スプライト設定")]
-    [SerializeField] private SpriteRenderer[] spritesToHide;  // 非表示にしたいスプライトを格納する配列
+    // イメージ非表示設定
+    [Header("非表示イメージ設定")]
+    [SerializeField] private Image[] imagesToHide;  // 非表示にしたいImageコンポーネントを格納する配列
 
     // ゲームタイマーに関する設定
     [Header("ゲームタイマー設定")]
@@ -31,8 +32,8 @@ public class GameDirector : MonoBehaviour
 
     void Start()
     {
-        // ゲーム開始前にスプライトを表示する
-        HideSprites(false);
+        // ゲーム開始前にイメージを表示する
+        HideImages(false);
 
         // GameTimerコンポーネントを取得
         gameTimer = FindObjectOfType<GameTimer>();
@@ -64,8 +65,8 @@ public class GameDirector : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1);  // 実際の時間で1秒待機
 
-        // カウントダウン終了後にスプライトを非表示にする
-        HideSprites(true);  // スプライトを非表示にする
+        // カウントダウン終了後にイメージを非表示にする
+        HideImages(true);  // イメージを非表示にする
         countdownText.gameObject.SetActive(false);  // カウントダウンテキストを非表示にする
 
         // タイムスケールを元に戻してゲーム開始
@@ -75,20 +76,20 @@ public class GameDirector : MonoBehaviour
         isCountdown = false;
     }
 
-    // 指定したスプライトを非表示/表示にする関数
-    void HideSprites(bool hide)
+    // 指定したイメージを非表示/表示にする関数
+    void HideImages(bool hide)
     {
-        foreach (var sprite in spritesToHide)
+        foreach (var image in imagesToHide)
         {
-            sprite.enabled = !hide;  // hideがtrueなら非表示、falseなら表示
+            image.enabled = !hide;  // hideがtrueなら非表示、falseなら表示
         }
     }
 
     // HPが減少した時に呼ばれる関数
     public void DecreaseHp()
     {
-        this.hpGauge.GetComponent<UnityEngine.UI.Image>().fillAmount -= 0.1f;
-        var image = this.hpGauge.GetComponent<UnityEngine.UI.Image>();
+        this.hpGauge.GetComponent<Image>().fillAmount -= 0.1f;  // HPゲージのImageコンポーネントを操作
+        var image = this.hpGauge.GetComponent<Image>();
         if (image.fillAmount < 0.1f)
         {
             Debug.Log(image.fillAmount);
