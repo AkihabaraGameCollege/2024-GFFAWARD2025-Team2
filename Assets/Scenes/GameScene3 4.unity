@@ -1147,6 +1147,7 @@ MonoBehaviour:
   endTime: 180
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!1001 &117702048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4779,6 +4780,7 @@ MonoBehaviour:
   endTime: 60
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!1001 &446418093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7093,6 +7095,7 @@ MonoBehaviour:
   endTime: 30
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!1001 &647472313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8232,6 +8235,7 @@ MonoBehaviour:
   endTime: 180
   startDelay: 1
   endDelay: 3
+  showPredictionLine: 1
 --- !u!1001 &734453949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8359,6 +8363,7 @@ MonoBehaviour:
   endTime: 180
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!4 &742353084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
@@ -11118,6 +11123,7 @@ MonoBehaviour:
   endTime: 180
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!4 &1057959012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}
@@ -12684,6 +12690,7 @@ MonoBehaviour:
   endTime: 180
   startDelay: 1
   endDelay: 3
+  showPredictionLine: 1
 --- !u!1001 &1149763993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14881,6 +14888,7 @@ MonoBehaviour:
   endTime: 60
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!1001 &1370965350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15583,11 +15591,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1920, y: 180}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -16841,6 +16849,7 @@ MonoBehaviour:
   endTime: 30
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!4 &1553494538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 401062, guid: ff2098c0501788540ac0f68232a120ca, type: 3}
@@ -17696,6 +17705,7 @@ MonoBehaviour:
   endTime: 180
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!1001 &1619417375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19261,6 +19271,7 @@ MonoBehaviour:
   endTime: 30
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!1 &1791213513
 GameObject:
   m_ObjectHideFlags: 0
@@ -20100,6 +20111,7 @@ MonoBehaviour:
   endTime: 30
   startDelay: 1
   endDelay: 1
+  showPredictionLine: 1
 --- !u!4 &1878622549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 401846, guid: 74c214f0739460f48a3ea12a42918452, type: 3}
