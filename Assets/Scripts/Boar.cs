@@ -132,7 +132,7 @@ public class Boar : MonoBehaviour
     private void LoadGameOverScene()
     {
         // ゲームオーバーシーンをロード
-        SceneManager.LoadScene(gameOverSceneName);
+        //SceneManager.LoadScene(gameOverSceneName);
     }
 
 
