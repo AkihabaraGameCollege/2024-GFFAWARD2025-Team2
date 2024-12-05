@@ -20,8 +20,15 @@ public class GameTimer : MonoBehaviour
 
     void Start()
     {
-        // シーン遷移時にtimeRemainingをリセット
-        timeRemaining = 181f;  // 3分1秒
+        // PlayerPrefsからタイマー設定を読み込む
+        if (PlayerPrefs.HasKey("TimeRemaining"))
+        {
+            timeRemaining = PlayerPrefs.GetFloat("TimeRemaining");  // 保存された残り時間を取得
+        }
+        else
+        {
+            timeRemaining = initialTime;  // 初期設定がある場合はそれを使用
+        }
 
         // タイマーの初期表示を更新
         UpdateTimeDisplay(timeRemaining);
@@ -49,5 +56,12 @@ public class GameTimer : MonoBehaviour
         int minutes = Mathf.FloorToInt(time / 60);  // 分を計算
         int seconds = Mathf.FloorToInt(time % 60);  // 秒を計算
         countdownText.text = string.Format("{0:00}:{1:00}", minutes, seconds);  // フォーマットして表示
+    }
+
+    // ゲームが終了する直前にPlayerPrefsに時間を保存
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.SetFloat("TimeRemaining", timeRemaining);  // 現在の残り時間を保存
+        PlayerPrefs.Save();  // 保存を確定
     }
 }
