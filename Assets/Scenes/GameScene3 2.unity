@@ -6636,28 +6636,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 803678016464701896, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-      propertyPath: _WalkSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 8b79cbd039c979846b5a7492539bb58d, type: 3}
-    - target: {fileID: 803678016464701896, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: _staminaSlider
       value: 
       objectReference: {fileID: 695061686}
     - target: {fileID: 1475970062479105023, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651463331479698783, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651463331479698783, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651463331479698783, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5651463331479698783, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6700,22 +6684,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-      propertyPath: loopcount
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-      propertyPath: MeshRenderer
-      value: 
-      objectReference: {fileID: 1313875536}
-    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-      propertyPath: GameOverScene
-      value: GameOverScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-      propertyPath: flashInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: lifeArray.Array.data[0]
       value: 
       objectReference: {fileID: 1317555174}
@@ -6732,11 +6700,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
---- !u!137 &1313875536 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 732164139133126935, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
-  m_PrefabInstance: {fileID: 1313875535}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1315916919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9018361852213810707, guid: f32e5eb6d8e949d43ab3c4f779324de0, type: 3}

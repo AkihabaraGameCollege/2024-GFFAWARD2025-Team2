@@ -263,28 +263,6 @@
                 },
                 {
                     "name": "",
-                    "id": "ec243246-8c7b-4b6e-a1cb-537dcc2dbdca",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4ca105bf-d8dc-4817-bfe6-a0201f1772a2",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "602a5298-84a6-4c36-b5c8-022d36620415",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -296,11 +274,11 @@
                 },
                 {
                     "name": "",
-                    "id": "3f4599a5-f499-4c7e-8139-83cfb8bc15f1",
-                    "path": "",
+                    "id": "1d81cec5-95af-4f60-a933-72745f287919",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad;Joystick",
+                    "groups": ";Gamepad",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
