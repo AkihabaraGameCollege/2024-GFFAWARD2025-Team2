@@ -38,6 +38,10 @@ public class Boar : MonoBehaviour
     // イノシシがプレイヤーに当たった回数
     private int hitCount = 0;
 
+    // 予測線を表示するかどうかのフラグ
+    [Header("予測線を表示するかどうか")]
+    [SerializeField] private bool showPredictionLine = true;
+
     // 初期化処理
     void Start()
     {
@@ -45,7 +49,6 @@ public class Boar : MonoBehaviour
         originalPosition = transform.localPosition;
         // イノシシの移動処理を開始
         StartCoroutine(PunchRoutine());
-
 
         // イノシシのコライダーがTriggerとして設定されているか確認
         Collider punchCollider = GetComponent<Collider>();
@@ -63,7 +66,6 @@ public class Boar : MonoBehaviour
 
         // イノシシの移動開始までの遅延時間を待つ
         yield return new WaitForSeconds(startTime);  // startDelayを使用
-
 
         while (Time.time - waveStartTime < endTime) // endTimeが経過するまで繰り返す
         {
@@ -135,5 +137,14 @@ public class Boar : MonoBehaviour
         //SceneManager.LoadScene(gameOverSceneName);
     }
 
-
+    // Gizmosを使って予測線を描画する
+    private void OnDrawGizmos()
+    {
+        if (showPredictionLine)
+        {
+            Gizmos.color = Color.red;
+            Vector3 targetPosition = originalPosition + new Vector3(moveDistance_x, 0, moveDistance);
+            Gizmos.DrawLine(originalPosition, targetPosition); // 予測線を描画
+        }
+    }
 }
