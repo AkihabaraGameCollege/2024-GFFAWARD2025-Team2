@@ -945,6 +945,7 @@ MonoBehaviour:
   _sprintSound: {fileID: 8300000, guid: 611190e36a215cd4ea787a5b762cff00, type: 3}
   _jumpSound: {fileID: 8300000, guid: d488d73d328fcee4baa01a1a5a8f0805, type: 3}
   _WalkSound: {fileID: 8300000, guid: 8b79cbd039c979846b5a7492539bb58d, type: 3}
+  gameDirector: {fileID: 0}
 --- !u!114 &9025500926967030339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,6 +1063,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d0af6a87-dfae-4f2d-bc4d-50e070c8f5fe
     m_ActionName: Player/Sprint[/Keyboard/leftShift,/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 803678016464701896}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 52711a55-eeb5-43f0-91fa-242f5265eef6
+    m_ActionName: Player/Pause[/Keyboard/escape,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1599,8 +1616,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  GameOverScene: GameOverScene 2
+  GameOverScene: GameOverScene
   invincibleTime: 0
+  flashInterval: 0.1
+  loopcount: 15
+  MeshRenderer: {fileID: 732164139133126935}
 --- !u!65 &2636799826333511376
 BoxCollider:
   m_ObjectHideFlags: 0
