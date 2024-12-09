@@ -343,6 +343,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
+        // カウントダウン中は入力を無効にする
+        if (gameDirector.isCountdown)
+        {
+            return;  // カウントダウン中は入力処理を行わない
+        }
+
+
         _pauseManager.TogglePause();
     }
 }
