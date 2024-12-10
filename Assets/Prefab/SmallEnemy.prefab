@@ -91,11 +91,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499e72b0645076d4189b99bcebfde80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 3
   duration: 1
   moveDistance: -300
   moveDistance_x: 0
   gameOverSceneName: GameOverScene
+  startTime: 1
+  endTime: 10
+  startDelay: 3
+  endDelay: 3
+  showPredictionLine: 1
 --- !u!1 &2401668894124794353
 GameObject:
   m_ObjectHideFlags: 0
