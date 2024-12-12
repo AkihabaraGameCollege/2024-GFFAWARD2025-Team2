@@ -15560,6 +15560,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1228181055}
     - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
+      propertyPath: GameOverScene
+      value: GameOverScene 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439842555701819068, guid: 70bbfa639577c5c4090006b85c7674ce, type: 3}
       propertyPath: flashInterval
       value: 0.1
       objectReference: {fileID: 0}
