@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class SwapScene : MonoBehaviour
 {
+    void Start()
+    {
+        // ゲーム開始時にマウスカーソルを非表示にする
+        Cursor.visible = false;
+        // ゲーム中にカーソルがロックされて動かなくする（オプション）
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     //シーンの遷移を指定する。
     public void OnClickTitleButton()
     {

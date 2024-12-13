@@ -101,6 +101,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        void Start()
+        {
+            // ゲーム開始時にマウスカーソルを非表示にする
+            Cursor.visible = false;
+            // ゲーム中にカーソルがロックされて動かなくする（オプション）
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
         // コンポーネントの初期化
         _transform = transform;
         _characterController = GetComponent<CharacterController>();

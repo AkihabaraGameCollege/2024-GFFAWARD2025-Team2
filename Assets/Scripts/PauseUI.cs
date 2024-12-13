@@ -3,6 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+    void Start()
+    {
+        // ゲーム開始時にマウスカーソルを非表示にする
+        Cursor.visible = false;
+        // ゲーム中にカーソルがロックされて動かなくする（オプション）
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public GameObject PauseUI;
     private bool isPaused = false; // ゲームがポーズ中かどうかを追跡
     [SerializeField]
