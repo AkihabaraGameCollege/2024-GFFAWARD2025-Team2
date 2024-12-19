@@ -13,21 +13,21 @@ public class PlayerController : MonoBehaviour
     [Header("スプリント時の速さ"), SerializeField]
     private float _sprintSpeed = 6;
 
-    // ジャンプする瞬間の速度
-    [Header("ジャンプする瞬間の速さ"), SerializeField]
-    private float _jumpSpeed = 7;
+    //// ジャンプする瞬間の速度
+    //[Header("ジャンプする瞬間の速さ"), SerializeField]
+    //private float _jumpSpeed = 7;
 
-    // 重力加速度
-    [Header("重力加速度"), SerializeField]
-    private float _gravity = 15;
+    //// 重力加速度
+    //[Header("重力加速度"), SerializeField]
+    //private float _gravity = 15;
 
-    // 落下時の速さ制限（無制限の場合はInfinity）
-    [Header("落下時の速さ制限（Infinityで無制限）"), SerializeField]
-    private float _fallSpeed = 10;
+    //// 落下時の速さ制限（無制限の場合はInfinity）
+    //[Header("落下時の速さ制限（Infinityで無制限）"), SerializeField]
+    //private float _fallSpeed = 10;
 
-    // 落下の初速
-    [Header("落下の初速"), SerializeField]
-    private float _initFallSpeed = 2;
+    //// 落下の初速
+    //[Header("落下の初速"), SerializeField]
+    //private float _initFallSpeed = 2;
 
     // スタミナの最大値
     [Header("スタミナの最大値"), SerializeField]
@@ -54,8 +54,8 @@ public class PlayerController : MonoBehaviour
     // プレイヤーの回転速度
     private float _turnVelocity;
 
-    // 前回地面に接触しているかどうかの状態
-    [SerializeField] private bool _isGroundedPrev;
+    //// 前回地面に接触しているかどうかの状態
+    //[SerializeField] private bool _isGroundedPrev;
 
     // スプリント中かどうか
     private bool _isSprinting;
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     // ダッシュ音とジャンプ音のAudioClip
     [Header("音声設定")]
     [SerializeField] private AudioClip _sprintSound;
-    [SerializeField] private AudioClip _jumpSound;
+    //[SerializeField] private AudioClip _jumpSound;
     [SerializeField] private AudioClip _WalkSound;
 
     // プレイヤーのAudioSource
@@ -83,8 +83,8 @@ public class PlayerController : MonoBehaviour
     private bool isWalk = false;
     private bool isIdle = false;
 
-    // ジャンプ中かどうか
-    private bool isJumping = false;
+    //// ジャンプ中かどうか
+    //private bool isJumping = false;
 
     // スプリント音と歩行音のループ再生のフラグ
     private bool isPlayingSprintSound = false;
@@ -199,25 +199,25 @@ public class PlayerController : MonoBehaviour
         // 地面に接地しているかどうかをチェック
         var isGrounded = _characterController.isGrounded;
 
-        if (isGrounded && !_isGroundedPrev)
-        {
-            // 地面に着いた瞬間、初速で少し浮き上がる
-            _verticalVelocity = -_initFallSpeed;
-            isJumping = false;  // ジャンプが終了した
-        }
-        else if (!isGrounded)
-        {
-            // 地面にいない場合、重力の影響で落下する
-            _verticalVelocity -= _gravity * Time.deltaTime;
+        //if (isGrounded && !_isGroundedPrev)
+        //{
+        //    // 地面に着いた瞬間、初速で少し浮き上がる
+        //    _verticalVelocity = -_initFallSpeed;
+        //    isJumping = false;  // ジャンプが終了した
+        //}
+        //else if (!isGrounded)
+        //{
+        //    // 地面にいない場合、重力の影響で落下する
+        //    _verticalVelocity -= _gravity * Time.deltaTime;
 
-            // 落下速度制限
-            if (_verticalVelocity < -_fallSpeed)
-                _verticalVelocity = -_fallSpeed;
+        //    // 落下速度制限
+        //    if (_verticalVelocity < -_fallSpeed)
+        //        _verticalVelocity = -_fallSpeed;
 
-            isJumping = true;  // ジャンプ中
-        }
+        //    isJumping = true;  // ジャンプ中
+        //}
 
-        _isGroundedPrev = isGrounded;
+        //_isGroundedPrev = isGrounded;
 
         // スプリント時の速度調整
         float currentSpeed = _isSprinting ? _sprintSpeed : _speed;
@@ -246,44 +246,37 @@ public class PlayerController : MonoBehaviour
             _transform.rotation = Quaternion.Euler(0, angleY, 0);
         }
 
-        // ジャンプ後の移動アニメーション
-        if (!isJumping)
-        {
-            // 走っているかどうかの判定
-            isRun = (_inputMove != Vector2.zero && _isSprinting);
+        //// ジャンプ後の移動アニメーション
+        //if (!isJumping)
+        //{
+        //    // 走っているかどうかの判定
+        //    isRun = (_inputMove != Vector2.zero && _isSprinting);
 
-            // 歩いているかどうかの判定
-            isWalk = (_inputMove != Vector2.zero && !_isSprinting);  // 走っていない、移動中 → 歩行状態
-        }
-        else
-        {
-            // ジャンプ中はアニメーションを「ラン」や「ウォーク」に遷移させない
-            isRun = false;
-            isWalk = false;
+        //    // 歩いているかどうかの判定
+        //    isWalk = (_inputMove != Vector2.zero && !_isSprinting);  // 走っていない、移動中 → 歩行状態
+        //}
+        //else
+        //{
+        //    // ジャンプ中はアニメーションを「ラン」や「ウォーク」に遷移させない
+        //    isRun = false;
+        //    isWalk = false;
 
-            // ジャンプアニメーションのトリガーを設定
-            if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
-            {
-                playerAnimator.SetTrigger("Jump");
-            }
-        }
+        //    // ジャンプアニメーションのトリガーを設定
+        //    if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        //    {
+        //        playerAnimator.SetTrigger("Jump");
+        //    }
+        //}
+
+        // 走っているかどうかの判定
+        isRun = (_inputMove != Vector2.zero && _isSprinting);
+
+        // 歩いているかどうかの判定
+        isWalk = (_inputMove != Vector2.zero && !_isSprinting);  // 走っていない、移動中 → 歩行状態
 
         // アイドル状態の判定
-        isIdle = (_inputMove == Vector2.zero && !_isSprinting && !isJumping) ||
-                 (isJumping && _inputMove == Vector2.zero && !_isSprinting);  // ジャンプ中でも移動がない場合はアイドル状態
+        isIdle = (_inputMove == Vector2.zero && !_isSprinting);  // 歩いていない場合はアイドル状態
 
-        // ジャンプ終了後にランやウォークに戻る
-        if (!isJumping && _inputMove != Vector2.zero)
-        {
-            if (_isSprinting)
-            {
-                isRun = true;
-            }
-            else
-            {
-                isWalk = true;
-            }
-        }
 
         // Animatorに状態を送る
         playerAnimator.SetBool("Run", isRun);
@@ -312,22 +305,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ジャンプ入力を処理
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (gameDirector.isCountdown) return;  // カウントダウン中は入力を無効に
+    //// ジャンプ入力を処理
+    //public void OnJump(InputAction.CallbackContext context)
+    //{
+    //    if (gameDirector.isCountdown) return;  // カウントダウン中は入力を無効に
 
-        if (!context.performed || !_characterController.isGrounded) return;
+    //    if (!context.performed || !_characterController.isGrounded) return;
 
-        // ジャンプ音を再生
-        if (_jumpSound != null)
-        {
-            _audioSource.PlayOneShot(_jumpSound);
-        }
+    //    // ジャンプ音を再生
+    //    if (_jumpSound != null)
+    //    {
+    //        _audioSource.PlayOneShot(_jumpSound);
+    //    }
 
-        _verticalVelocity = _jumpSpeed;
-        isJumping = true; // ジャンプ開始
-    }
+    //    _verticalVelocity = _jumpSpeed;
+    //    isJumping = true; // ジャンプ開始
+    //}
 
     // スプリント入力を処理
     // シフトキーが押されたときの処理
