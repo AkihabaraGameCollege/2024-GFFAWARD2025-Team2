@@ -4269,17 +4269,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _sprintSpeed: 6
-  _jumpSpeed: 7
-  _gravity: 15
-  _fallSpeed: 10
-  _initFallSpeed: 2
   _maxStamina: 100
   _staminaRecoveryRate: 10
   _sprintStaminaDrainRate: 10
-  _isGroundedPrev: 0
   _staminaSlider: {fileID: 0}
   _sprintSound: {fileID: 0}
-  _jumpSound: {fileID: 0}
   _WalkSound: {fileID: 0}
   gameDirector: {fileID: 0}
 --- !u!54 &779097512
